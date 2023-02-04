@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Manages the gameplay of exactly one player
 /// </summary>
-public class GameplayManager : MonoBehaviour
+public class PlayerObjectSpawner : MonoBehaviour
 {
 	[SerializeField]
 	private RemovableRoot[] availableRoots;
@@ -41,7 +41,7 @@ public class GameplayManager : MonoBehaviour
 		var test = this.viewport.WorldSpaceDimensions;
 		Debug.LogFormat("viewport: {0}", test);
 		var middleGround = Object.Instantiate(this.groundSegments.GetRandom());
-		middleGround.transform.position = new Vector2(0, -middleGround.dimensions.center.y);
+		middleGround.transform.position = new Vector2(0, this.viewport.WorldSpaceDimensions.center.y - middleGround.dimensions.center.y);
 		this.generatedGrounds.Add(middleGround);
 		this.coveredToRight += middleGround.dimensions.width / 2;
 		this.coveredToLeft -= middleGround.dimensions.width / 2;
@@ -49,7 +49,7 @@ public class GameplayManager : MonoBehaviour
 		this.FillGroundToLeft();
 
 		var firstRoot = Object.Instantiate(this.availableRoots.GetRandom());
-		firstRoot.transform.position = Vector2.zero;
+		firstRoot.transform.position = new Vector2(0, this.viewport.WorldSpaceDimensions.center.y);
 		this.generatedRoots.Add(firstRoot);
 		this.nextRootStart = firstRoot.Dimensions.width / 2 + this.rootSpacing;
 		this.GenerateRoots();
@@ -61,7 +61,7 @@ public class GameplayManager : MonoBehaviour
 		{
 			var ground = Object.Instantiate(this.groundSegments.GetRandom());
 			this.generatedGrounds.Add(ground);
-			ground.transform.position = new Vector2(this.coveredToRight + ground.dimensions.width / 2, -ground.dimensions.center.y);
+			ground.transform.position = new Vector2(this.coveredToRight + ground.dimensions.width / 2, this.viewport.WorldSpaceDimensions.center.y - ground.dimensions.center.y);
 			this.coveredToRight += ground.dimensions.width;
 		}
 	}
@@ -71,7 +71,7 @@ public class GameplayManager : MonoBehaviour
 		{
 			var ground = Object.Instantiate(this.groundSegments.GetRandom());
 			this.generatedGrounds.Add(ground);
-			ground.transform.position = new Vector2(this.coveredToLeft - ground.dimensions.width / 2, -ground.dimensions.center.y);
+			ground.transform.position = new Vector2(this.coveredToLeft - ground.dimensions.width / 2, this.viewport.WorldSpaceDimensions.center.y - ground.dimensions.center.y);
 			this.coveredToLeft -= ground.dimensions.width;
 		}
 	}
@@ -80,7 +80,7 @@ public class GameplayManager : MonoBehaviour
 		while (this.nextRootStart < this.viewport.WorldSpaceDimensions.xMax)
 		{
 			var root = Object.Instantiate(this.availableRoots.GetRandom());
-			root.transform.position = new Vector2(this.nextRootStart + root.Dimensions.width / 2, 0);
+			root.transform.position = new Vector2(this.nextRootStart + root.Dimensions.width / 2, this.viewport.WorldSpaceDimensions.center.y);
 			this.generatedRoots.Add(root);
 			this.nextRootStart += this.rootSpacing + root.Dimensions.width;
 		}
