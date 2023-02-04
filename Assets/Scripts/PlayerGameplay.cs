@@ -25,6 +25,8 @@ public class PlayerGameplay : MonoBehaviour
 	private RootInputBase currentInput = null;
 	private Task removeTask;
 
+	public int score = 0;
+
 	private Dictionary<InputActions, bool> inputs = new() {
 		{InputActions.Neutral, false},
 		{InputActions.Down, false},
@@ -64,6 +66,8 @@ public class PlayerGameplay : MonoBehaviour
 				{
 					if (this.currentInput.HandleInputs(this.inputs, out var progress, out var updateInputPrompt))
 					{
+						score += 1;
+						Debug.Log("YOU DID IT!");
 						this.removeTask = this.spawner.RemoveRoot();
 						this.UpdatePrompt();
 					}
