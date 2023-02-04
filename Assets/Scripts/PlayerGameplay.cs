@@ -34,7 +34,10 @@ public class PlayerGameplay : MonoBehaviour
 		}
 		if (Input.GetButtonDown(InputActions.Decline.ToInputName()))
 		{
-			Debug.Log("B");
+			if (this.spawner.CurrentRoot != null)
+			{
+				this.spawner.SkipCurrentRoot();
+			}
 		}
 	}
 }

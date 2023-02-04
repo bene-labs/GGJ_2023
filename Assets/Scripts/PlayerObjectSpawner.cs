@@ -18,6 +18,7 @@ public class PlayerObjectSpawner : MonoBehaviour
 
 	private List<GroundSegment> generatedGrounds = new();
 	private List<RemovableRoot> generatedRoots = new();
+	private List<RemovableRoot> skippedRoots = new();
 
 	private float coveredToRight = 0;
 	private float coveredToLeft = 0;
@@ -100,18 +101,32 @@ public class PlayerObjectSpawner : MonoBehaviour
 		this.GenerateRoots();
 	}
 
-	internal void DestroyCurrentRoot()
+	public void DestroyCurrentRoot()
 	{
 		if (this.generatedRoots.Count > 0)
 		{
 			var root = this.generatedRoots[0];
 			this.generatedRoots.RemoveAt(0);
 			Object.Destroy(root.gameObject);
-			var nextRoot = this.CurrentRoot;
-			if (nextRoot != null)
-			{
-				this.viewport.CenterOn(nextRoot.WorldPosition);
-			}
+			AdvanceToNextRoot();
+		}
+	}
+	private void AdvanceToNextRoot()
+	{
+		var nextRoot = this.CurrentRoot;
+		if (nextRoot != null)
+		{
+			this.viewport.CenterOn(nextRoot.WorldPosition);
+		}
+	}
+	public void SkipCurrentRoot()
+	{
+		if (this.generatedRoots.Count > 0)
+		{
+			var root = this.generatedRoots[0];
+			this.generatedRoots.RemoveAt(0);
+			this.skippedRoots.Add(root);
+			AdvanceToNextRoot();
 		}
 	}
 }
