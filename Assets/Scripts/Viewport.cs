@@ -24,7 +24,7 @@ public class Viewport : MonoBehaviour
 
 	public event System.Action<Rect> ViewportChanged;
 
-	private Camera camera;
+	private new Camera camera;
 
 	private Rect lastRelativeRect;
 	private Vector2 lastResolution;
@@ -49,6 +49,12 @@ public class Viewport : MonoBehaviour
 		{
 			this.ViewportChanged?.Invoke(this.WorldSpaceDimensions);
 		}
+	}
+
+	public void CenterOn(Rect worldPosition)
+	{
+		var offset = worldPosition.x - this.WorldSpaceDimensions.center.x;
+		this.transform.position += new Vector3(offset, 0, 0);
 	}
 
 	void Update()

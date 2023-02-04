@@ -21,3 +21,15 @@ public enum InputActions
 	/// </summary>
 	Decline,
 }
+
+public static class InputActionsExtensions
+{
+	public static string ToInputName(this InputActions inputAction) => inputAction switch
+	{
+		InputActions.Neutral => "NeutralAction",
+		InputActions.Down => "DownAction",
+		InputActions.Up => "UpAction",
+		InputActions.Decline => "DeclineAction",
+		_ => null,
+	};
+}

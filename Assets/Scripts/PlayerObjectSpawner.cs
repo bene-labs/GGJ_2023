@@ -30,8 +30,8 @@ public class PlayerObjectSpawner : MonoBehaviour
 
 	void Start()
 	{
-		Debug.Assert(this.viewport != null, "GameplayManager: no viewport assigned!");
-		Debug.Assert(this.groundSegments != null && this.groundSegments.Length > 0, "GameplayManager: no viewport assigned!");
+		Debug.Assert(this.viewport != null, $"{nameof(PlayerObjectSpawner)}: no viewport assigned!", this);
+		Debug.Assert(this.groundSegments != null && this.groundSegments.Length > 0, $"{nameof(PlayerObjectSpawner)}: no viewport assigned!", this);
 		this.viewport.ViewportChanged += this.HandleViewportChange;
 		this.InitializeFirstRoots();
 	}
@@ -98,5 +98,20 @@ public class PlayerObjectSpawner : MonoBehaviour
 		this.FillGroundToLeft();
 		this.FillGroundToRight();
 		this.GenerateRoots();
+	}
+
+	internal void DestroyCurrentRoot()
+	{
+		if (this.generatedRoots.Count > 0)
+		{
+			var root = this.generatedRoots[0];
+			this.generatedRoots.RemoveAt(0);
+			Object.Destroy(root.gameObject);
+			var nextRoot = this.CurrentRoot;
+			if (nextRoot != null)
+			{
+				this.viewport.CenterOn(nextRoot.WorldPosition);
+			}
+		}
 	}
 }

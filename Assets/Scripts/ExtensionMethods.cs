@@ -26,4 +26,6 @@ public static class ExtensionMethods
 			return default;
 		}
 	}
+
+	public static Rect Offsetted(this Rect rect, Vector2 offset) => new Rect(rect.position + offset, rect.size);
 }
