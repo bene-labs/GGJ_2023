@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 2216172123
+    locked: 0
+  - name: Root
+    uniqueID: 2374374623
+    locked: 0
+  - name: RootForeground
+    uniqueID: 1846273729
+    locked: 0
+  - name: MotherRoot
+    uniqueID: 3672960853
+    locked: 0
+  - name: InputPrompts
+    uniqueID: 3099177125
+    locked: 0
