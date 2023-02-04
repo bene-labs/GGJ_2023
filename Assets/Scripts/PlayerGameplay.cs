@@ -18,6 +18,8 @@ public class PlayerGameplay : MonoBehaviour
 	private InputCount inputCount;
 	[SerializeField]
 	private RectTransform inputPromptParent;
+	[SerializeField]
+	private int playerIndex;
 
 	private Task<RootInputBase> currentRootTask = null;
 	private RootInputBase currentInput = null;
@@ -40,10 +42,10 @@ public class PlayerGameplay : MonoBehaviour
 
 	void Update()
 	{
-		inputs[InputActions.Neutral] = Input.GetButtonDown(InputActions.Neutral.ToInputName());
-		inputs[InputActions.Down] = Input.GetButtonDown(InputActions.Down.ToInputName());
-		inputs[InputActions.Up] = Input.GetButtonDown(InputActions.Up.ToInputName());
-		inputs[InputActions.Decline] = Input.GetButtonDown(InputActions.Decline.ToInputName());
+		inputs[InputActions.Neutral] = Input.GetButtonDown(InputActions.Neutral.ToInputName(this.playerIndex));
+		inputs[InputActions.Down] = Input.GetButtonDown(InputActions.Down.ToInputName(this.playerIndex));
+		inputs[InputActions.Up] = Input.GetButtonDown(InputActions.Up.ToInputName(this.playerIndex));
+		inputs[InputActions.Decline] = Input.GetButtonDown(InputActions.Decline.ToInputName(this.playerIndex));
 
 		if (this.currentRootTask == null)
 		{

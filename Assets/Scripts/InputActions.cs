@@ -24,12 +24,15 @@ public enum InputActions
 
 public static class InputActionsExtensions
 {
-	public static string ToInputName(this InputActions inputAction) => inputAction switch
+	public static string ToInputName(this InputActions inputAction, int playerIndex)
 	{
-		InputActions.Neutral => "NeutralAction",
-		InputActions.Down => "DownAction",
-		InputActions.Up => "UpAction",
-		InputActions.Decline => "DeclineAction",
-		_ => null,
-	};
+		return inputAction switch
+		{
+			InputActions.Neutral => "DownAction",
+			InputActions.Down => "LeftAction",
+			InputActions.Up => "UpAction",
+			InputActions.Decline => "RightAction",
+			_ => null,
+		} + (playerIndex + 1);
+	}
 }
