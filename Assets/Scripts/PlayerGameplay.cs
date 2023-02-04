@@ -66,8 +66,8 @@ public class PlayerGameplay : MonoBehaviour
 				{
 					if (this.currentInput.HandleInputs(this.inputs, out var progress, out var updateInputPrompt))
 					{
-						score += 1;
-						Debug.Log("YOU DID IT!");
+						score += this.currentInput.getScoreValue();
+						Debug.Log("Points got: " + this.currentInput.getScoreValue().ToString());
 						this.removeTask = this.spawner.RemoveRoot();
 						this.UpdatePrompt();
 					}

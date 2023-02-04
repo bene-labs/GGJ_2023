@@ -21,6 +21,11 @@ public class RepeatedSingleButtonInput : RootInputBase
 
 	public override InputActions? NextRequiredInput => this.requiredInput;
 
+	public override int getScoreValue()
+	{
+		return requiredInputCount * 2;
+	}
+	
 	protected override void Initialize()
 	{
 		this.requiredInput = typeof(InputActions).GetRandomValue<InputActions>();

@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Random = UnityEngine.Random;
 
 [CreateAssetMenu(menuName = "roots/button input sequence")]
 public class InputSequence : RootInputBase
@@ -20,6 +22,11 @@ public class InputSequence : RootInputBase
 
 	public override List<InputActions> GetInputPrompts() => this.requiredInputs;
 
+	public override int getScoreValue()
+	{
+		return requiredInputs.Count * 2 * requiredInputs.Count;
+	}
+	
 	public override bool HandleInputs(Dictionary<InputActions, bool> inputs, out float? progress, out bool updatePrompts)
 	{
 		progress = this.correctInputs * 1.0f / this.requiredInputs.Count;

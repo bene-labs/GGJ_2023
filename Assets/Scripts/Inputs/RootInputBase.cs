@@ -20,6 +20,8 @@ public abstract class RootInputBase : ScriptableObject
 
 	abstract protected void Initialize();
 
+	abstract public int getScoreValue();
+	
 	abstract public List<InputActions> GetInputPrompts();
 	abstract public InputActions? NextRequiredInput { get; }
 	abstract public bool IsRepeatedInput { get; }
