@@ -11,6 +11,8 @@ public class PlayerGameplay : MonoBehaviour
 	private RootSpawner spawner;
 	[SerializeField]
 	private RemovableRoot[] availableRoots;
+	[SerializeField]
+	private InputPrompt inputPrompt;
 
 	private Task<RootInputBase> currentRootTask = null;
 	private RootInputBase currentInput = null;
@@ -54,6 +56,12 @@ public class PlayerGameplay : MonoBehaviour
 					if (this.currentInput.HandleInputs(this.inputs, out var progress, out var prompt))
 					{
 						this.removeTask = this.spawner.RemoveRoot();
+						this.inputPrompt.gameObject.SetActive(false);
+					}
+					else
+					{
+						this.inputPrompt.gameObject.SetActive(true);
+						this.inputPrompt.ApplyInput(prompt);
 					}
 				}
 				if (this.removeTask != null && this.removeTask.IsCompleted)
