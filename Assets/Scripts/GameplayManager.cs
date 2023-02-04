@@ -18,11 +18,19 @@ public class GameplayManager : MonoBehaviour
 	{
 		Debug.Assert(this.viewport != null, "GameplayManager: no viewport assigned!");
 		this.InitializeFirstRoots();
+		this.viewport.ViewportChanged += this.HandleViewportChange;
 	}
 
 	private void InitializeFirstRoots()
 	{
+		var test = this.viewport.WorldSpaceDimensions;
+		Debug.LogFormat("viewport: {0}", test);
 		// TODO(rw): initialize first few roots
+	}
+
+	private void HandleViewportChange(Rect newRect)
+	{
+		Debug.LogFormat("new viewport: {0}", newRect);
 	}
 
 	// Update is called once per frame

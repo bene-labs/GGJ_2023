@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7504378754293451159}
   - component: {fileID: 728346890804376197}
   m_Layer: 0
-  m_Name: CarrotOk
+  m_Name: CarrotBad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: -1920592673
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ef1ae97f0d89c164e99f2fc7fa2aaa62, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9108a72e3074f9e4591a3be3270d0562, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,4 +104,4 @@ MonoBehaviour:
     width: 2
     height: 2
   displayedActions: 
-  IsGood: 0
+  IsGood: 1
