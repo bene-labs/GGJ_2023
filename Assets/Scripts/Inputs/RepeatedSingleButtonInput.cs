@@ -23,16 +23,13 @@ public class RepeatedSingleButtonInput : RootInputBase
 
 	protected override void Initialize()
 	{
-		typeof(InputActions).GetRandomValue<InputActions>();
 		this.requiredInput = typeof(InputActions).GetRandomValue<InputActions>();
 		this.currentInputCount = 0;
 		this.requiredInputCount = Random.Range(this.minInputCount, this.maxInputCount + 1);
-		Debug.LogFormat("{0} required {1} inputs", this.requiredInputCount, this.requiredInput);
 	}
 
 	public override bool HandleInputs(Dictionary<InputActions, bool> inputs, out float? progress, out bool updatePrompts)
 	{
-		progress = null;
 		var pressedButtons = inputs.Count(pair => pair.Value);
 		if (inputs[this.requiredInput])
 		{
