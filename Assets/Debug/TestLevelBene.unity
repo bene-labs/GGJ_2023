@@ -373,11 +373,11 @@ PrefabInstance:
       objectReference: {fileID: 6116380998989859211, guid: 27403acbf8b0ddd46b17778c0a12470b, type: 3}
     - target: {fileID: 2183998051737462137, guid: 310a84ff081e8e7419daeb43d0b85e8d, type: 3}
       propertyPath: maxSpawnDelay
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2183998051737462137, guid: 310a84ff081e8e7419daeb43d0b85e8d, type: 3}
       propertyPath: minSpawnDelay
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2183998051737462137, guid: 310a84ff081e8e7419daeb43d0b85e8d, type: 3}
       propertyPath: hidingSpots.Array.size

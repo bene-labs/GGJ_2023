@@ -17,7 +17,6 @@ public class TurnipMamaSpawner : MonoBehaviour
     void Start()
     {
         _spawnDelay = Random.Range(minSpawnDelay, maxSpawnDelay);
-        SpawnMama();
     }
 
     // Update is called once per frame
@@ -34,6 +33,7 @@ public class TurnipMamaSpawner : MonoBehaviour
 
     private void SpawnMama()
     {
+        Debug.Assert(this.turnipMama != null, "prefab is null");
         var new_mama = Instantiate(turnipMama);
         new_mama.PeekOut(GetRandomHidingSpot());
     }
