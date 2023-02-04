@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a0c3fc1f30ea5a4aa74550631e4e8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <dimensions>k__BackingField:
+  <Dimensions>k__BackingField:
     serializedVersion: 2
     x: 0
     y: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 public class RemovableRoot : MonoBehaviour
 {
 	[field: SerializeField]
-	public Rect dimensions { get; private set; }
+	public Rect Dimensions { get; private set; }
 
 	public InputActions[] displayedActions;
 	[field: SerializeField]

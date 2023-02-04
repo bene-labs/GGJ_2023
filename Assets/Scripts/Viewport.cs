@@ -17,9 +17,8 @@ public class Viewport : MonoBehaviour
 			var unitsRect = new Rect(pixelsRect.x * unitsPerPixel, pixelsRect.y * unitsPerPixel, pixelsRect.width * unitsPerPixel, pixelsRect.height * unitsPerPixel);
 			var xFactor = Screen.height / pixelsPerUnit;
 			var yFactor = Screen.width / pixelsPerUnit;
-			var worldSpaceOffset = ((Vector2)this.transform.position) + unitsRect.center;
-			// TODO(rw): adjust based on camera position
-			return new Rect(-worldSpaceOffset, unitsRect.size);
+			var worldSpaceOffset = ((Vector2)this.transform.position) - unitsRect.center;
+			return new Rect(worldSpaceOffset, unitsRect.size);
 		}
 	}
 
