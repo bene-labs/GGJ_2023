@@ -75,4 +75,16 @@ public static class ExtensionMethods
 			component.gameObject.SetActive(active);
 		}
 	}
+
+
+	public static Vector2 RandomPoint(this Rect rect)
+	{
+		return new Vector2(Random.Range(rect.xMin, rect.xMax), Random.Range(rect.yMin, rect.yMax));
+	}
+
+	public static Color WithAlpha(this Color color, float alpha)
+	{
+		color.a = alpha;
+		return color;
+	}
 }
