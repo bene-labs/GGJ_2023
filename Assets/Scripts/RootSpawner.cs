@@ -5,9 +5,14 @@ using UnityEngine;
 
 public class RootSpawner : MonoBehaviour
 {
+	[SerializeField]
 	private float spawnDelaySeconds = 0.05f;
+	[SerializeField]
 	private float despawnDelaySeconds = 0.05f;
 	private RemovableRoot currentRoot;
+
+	[SerializeField]
+	private GameObject rootPullEffect;
 
 	public async Task<RootInputBase> SpawnRoot(RemovableRoot rootPrefab)
 	{
@@ -22,6 +27,7 @@ public class RootSpawner : MonoBehaviour
 
 	public async Task RemoveRoot()
 	{
+		Object.Instantiate(rootPullEffect, this.currentRoot.transform.position, Quaternion.identity);
 		Object.Destroy(this.currentRoot.gameObject);
 		await Task.Delay((int)(this.despawnDelaySeconds * 1000));
 	}
