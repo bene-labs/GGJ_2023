@@ -15,6 +15,12 @@ public class RepeatedSingleButtonInput : RootInputBase
 	private int requiredInputCount;
 	private int currentInputCount;
 
+	public override bool IsRepeatedInput => true;
+
+	public override int RemainingInputCount => this.requiredInputCount - this.currentInputCount;
+
+	public override InputActions? NextRequiredInput => this.requiredInput;
+
 	protected override void Initialize()
 	{
 		this.requiredInput = ((InputActions[])System.Enum.GetValues(typeof(InputActions))).GetRandom();
@@ -23,21 +29,31 @@ public class RepeatedSingleButtonInput : RootInputBase
 		Debug.LogFormat("{0} required {1} inputs", this.requiredInputCount, this.requiredInput);
 	}
 
-	public override bool HandleInputs(Dictionary<InputActions, bool> inputs, out float? progress, out InputActions buttonPrompt)
+	public override bool HandleInputs(Dictionary<InputActions, bool> inputs, out float? progress, out bool updatePrompts)
 	{
 		progress = null;
-		buttonPrompt = requiredInput;
 		var pressedButtons = inputs.Count(pair => pair.Value);
 		if (inputs[this.requiredInput])
 		{
 			this.currentInputCount += 1;
+			updatePrompts = true;
 		}
 		else if (pressedButtons > 0)
 		{
 			Debug.Log("Wrong Button Pressed!");
 			this.currentInputCount = 0;
+			updatePrompts = true;
+		}
+		else
+		{
+			updatePrompts = false;
 		}
 		progress = this.currentInputCount * 1.0f / this.requiredInputCount;
 		return this.currentInputCount >= this.requiredInputCount;
+	}
+
+	public override List<InputActions> GetInputPrompty()
+	{
+		return new List<InputActions>() { this.requiredInput };
 	}
 }

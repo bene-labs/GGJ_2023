@@ -13,6 +13,8 @@ public class PlayerGameplay : MonoBehaviour
 	private RemovableRoot[] availableRoots;
 	[SerializeField]
 	private InputPrompt inputPrompt;
+	[SerializeField]
+	private InputCount inputCount;
 
 	private Task<RootInputBase> currentRootTask = null;
 	private RootInputBase currentInput = null;
@@ -30,6 +32,7 @@ public class PlayerGameplay : MonoBehaviour
 		Debug.Assert(this.viewport != null, "PlayerGameplay: no viewport assigned!", this);
 		Debug.Assert(this.spawner != null, "PlayerGameplay: no PlayerObjectSpawner assigned!", this);
 		Debug.Assert(this.availableRoots != null && availableRoots.Length > 0, "no roots assigned!", this);
+		this.UpdatePrompt();
 	}
 
 	void Update()
@@ -48,20 +51,24 @@ public class PlayerGameplay : MonoBehaviour
 			if (this.currentInput == null)
 			{
 				this.currentInput = this.currentRootTask.Result.CopyForUse();
+				this.UpdatePrompt();
 			}
 			if (this.currentInput != null)
 			{
 				if (this.removeTask == null)
 				{
-					if (this.currentInput.HandleInputs(this.inputs, out var progress, out var prompt))
+					if (this.currentInput.HandleInputs(this.inputs, out var progress, out var updateInputPrompt))
 					{
 						this.removeTask = this.spawner.RemoveRoot();
 						this.inputPrompt.gameObject.SetActive(false);
+						this.UpdatePrompt();
 					}
 					else
 					{
-						this.inputPrompt.gameObject.SetActive(true);
-						this.inputPrompt.ApplyInput(prompt);
+						if (updateInputPrompt)
+						{
+							this.UpdatePrompt();
+						}
 					}
 				}
 				if (this.removeTask != null && this.removeTask.IsCompleted)
@@ -72,6 +79,30 @@ public class PlayerGameplay : MonoBehaviour
 					this.removeTask = null;
 				}
 			}
+		}
+	}
+
+	private void UpdatePrompt()
+	{
+		if (this.currentInput != null && this.removeTask == null)
+		{
+			this.inputPrompt.gameObject.SetActive(true);
+			if (this.currentInput.IsRepeatedInput)
+			{
+				this.inputCount.gameObject.SetActive(true);
+				this.inputCount.ApplyCount(this.currentInput.RemainingInputCount);
+				this.inputPrompt.ApplyInput(this.currentInput.NextRequiredInput.Value);
+			}
+			else
+			{
+				this.inputCount.gameObject.SetActive(false);
+				Debug.LogFormat("NOT YET IMPLEMENTED");
+			}
+		}
+		else
+		{
+			this.inputCount.gameObject.SetActive(false);
+			this.inputPrompt.gameObject.SetActive(false);
 		}
 	}
 }

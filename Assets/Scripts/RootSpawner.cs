@@ -11,9 +11,7 @@ public class RootSpawner : MonoBehaviour
 
 	public async Task<RootInputBase> SpawnRoot(RemovableRoot rootPrefab)
 	{
-		Debug.LogFormat("spawn");
 		await Task.Delay((int)(this.spawnDelaySeconds * 1000));
-		Debug.LogFormat("spawning delay done");
 		var root = Object.Instantiate(rootPrefab);
 		this.currentRoot = root;
 		root.transform.position = this.transform.position;
@@ -24,10 +22,7 @@ public class RootSpawner : MonoBehaviour
 
 	public async Task RemoveRoot()
 	{
-		Debug.LogFormat("remove");
 		Object.Destroy(this.currentRoot.gameObject);
 		await Task.Delay((int)(this.despawnDelaySeconds * 1000));
-
-		Debug.LogFormat("removing done");
 	}
 }
