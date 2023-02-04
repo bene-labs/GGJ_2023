@@ -12,9 +12,12 @@ public class PlayerGameplay : MonoBehaviour
 	[SerializeField]
 	private RemovableRoot[] availableRoots;
 	[SerializeField]
-	private InputPrompt inputPrompt;
+	private InputPrompt inputPromptPrefab;
+	private List<InputPrompt> inputPrompts = new();
 	[SerializeField]
 	private InputCount inputCount;
+	[SerializeField]
+	private RectTransform inputPromptParent;
 
 	private Task<RootInputBase> currentRootTask = null;
 	private RootInputBase currentInput = null;
@@ -60,7 +63,6 @@ public class PlayerGameplay : MonoBehaviour
 					if (this.currentInput.HandleInputs(this.inputs, out var progress, out var updateInputPrompt))
 					{
 						this.removeTask = this.spawner.RemoveRoot();
-						this.inputPrompt.gameObject.SetActive(false);
 						this.UpdatePrompt();
 					}
 					else
@@ -86,23 +88,60 @@ public class PlayerGameplay : MonoBehaviour
 	{
 		if (this.currentInput != null && this.removeTask == null)
 		{
-			this.inputPrompt.gameObject.SetActive(true);
+			this.inputPrompts.SetAllGameObjectsActive(true);
 			if (this.currentInput.IsRepeatedInput)
 			{
 				this.inputCount.gameObject.SetActive(true);
 				this.inputCount.ApplyCount(this.currentInput.RemainingInputCount);
-				this.inputPrompt.ApplyInput(this.currentInput.NextRequiredInput.Value);
+				if (this.inputPrompts.Count < 1)
+				{
+					this.InstantiatePrompt();
+				}
+				while (this.inputPrompts.Count > 1)
+				{
+					this.DestroyAndRemoveInputPromptByIndex(1);
+				}
+				this.inputPrompts[0].ApplyInput(this.currentInput.NextRequiredInput.Value);
 			}
 			else
 			{
 				this.inputCount.gameObject.SetActive(false);
-				Debug.LogFormat("NOT YET IMPLEMENTED");
+				var prompts = this.currentInput.GetInputPrompts();
+				while (this.inputPrompts.Count < prompts.Count)
+				{
+					this.InstantiatePrompt();
+				}
+				while (this.inputPrompts.Count > prompts.Count)
+				{
+					this.DestroyAndRemoveInputPromptByIndex(prompts.Count);
+				}
+
+				for (int index = 0; index < prompts.Count; index += 1)
+				{
+					this.inputPrompts[index].ApplyInput(prompts[index], done: index < prompts.Count - this.currentInput.RemainingInputCount);
+				}
 			}
 		}
 		else
 		{
 			this.inputCount.gameObject.SetActive(false);
-			this.inputPrompt.gameObject.SetActive(false);
+			this.inputPrompts.SetAllGameObjectsActive(false);
 		}
+
+		Debug.LogFormat("remaining elements: {0}", this.inputPrompts.Count);
+	}
+	private InputPrompt InstantiatePrompt()
+	{
+		var inputPrompt = Object.Instantiate(this.inputPromptPrefab);
+		inputPrompt.transform.SetParent(inputPromptParent, worldPositionStays: false);
+		this.inputPrompts.Add(inputPrompt);
+		return inputPrompt;
+	}
+	private void DestroyAndRemoveInputPromptByIndex(int index)
+	{
+		var prompt = this.inputPrompts[index];
+		Debug.Assert(prompt != null);
+		this.inputPrompts.Remove(prompt);
+		prompt.DestroyGameObject();
 	}
 }

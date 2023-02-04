@@ -104,6 +104,6 @@ MonoBehaviour:
     width: 2
     height: 2
   <possibleInputs>k__BackingField:
-  - {fileID: 11400000, guid: eabdfcfe39e550a4ea4bc6da43157fa5, type: 2}
+  - {fileID: 11400000, guid: 67c7074a1a76058498ea71cd825e0ee1, type: 2}
   displayedActions: 
   IsGood: 1

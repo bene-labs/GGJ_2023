@@ -20,7 +20,7 @@ public abstract class RootInputBase : ScriptableObject
 
 	abstract protected void Initialize();
 
-	abstract public List<InputActions> GetInputPrompty();
+	abstract public List<InputActions> GetInputPrompts();
 	abstract public InputActions? NextRequiredInput { get; }
 	abstract public bool IsRepeatedInput { get; }
 	abstract public int RemainingInputCount { get; }

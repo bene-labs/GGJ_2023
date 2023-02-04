@@ -1,10 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(Image))]
 public class InputPrompt : MonoBehaviour
 {
-	public void ApplyInput(InputActions input)
+	[SerializeField]
+	private Sprite doneSprite;
+	private Sprite regularSprite;
+	private Image imageElement;
+
+	void Awake()
+	{
+		this.imageElement = this.GetComponent<Image>();
+		this.regularSprite = imageElement.sprite;
+	}
+
+	public void ApplyInput(InputActions input, bool done = false)
 	{
 		var rotationDegrees = input switch
 		{
@@ -15,5 +28,6 @@ public class InputPrompt : MonoBehaviour
 			_ => 0,
 		};
 		this.transform.rotation = Quaternion.Euler(0, 0, rotationDegrees);
+		this.imageElement.sprite = done ? this.doneSprite : this.regularSprite;
 	}
 }

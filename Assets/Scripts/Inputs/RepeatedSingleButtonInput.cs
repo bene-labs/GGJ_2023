@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-[CreateAssetMenu(menuName = "roots/repeated button input")]//, fileName = nameof(RepeatedSingleButtonInput))]
+[CreateAssetMenu(menuName = "roots/repeated button input")]
 public class RepeatedSingleButtonInput : RootInputBase
 {
 	[SerializeField]
@@ -23,7 +23,8 @@ public class RepeatedSingleButtonInput : RootInputBase
 
 	protected override void Initialize()
 	{
-		this.requiredInput = ((InputActions[])System.Enum.GetValues(typeof(InputActions))).GetRandom();
+		typeof(InputActions).GetRandomValue<InputActions>();
+		this.requiredInput = typeof(InputActions).GetRandomValue<InputActions>();
 		this.currentInputCount = 0;
 		this.requiredInputCount = Random.Range(this.minInputCount, this.maxInputCount + 1);
 		Debug.LogFormat("{0} required {1} inputs", this.requiredInputCount, this.requiredInput);
@@ -40,7 +41,6 @@ public class RepeatedSingleButtonInput : RootInputBase
 		}
 		else if (pressedButtons > 0)
 		{
-			Debug.Log("Wrong Button Pressed!");
 			this.currentInputCount = 0;
 			updatePrompts = true;
 		}
@@ -52,7 +52,7 @@ public class RepeatedSingleButtonInput : RootInputBase
 		return this.currentInputCount >= this.requiredInputCount;
 	}
 
-	public override List<InputActions> GetInputPrompty()
+	public override List<InputActions> GetInputPrompts()
 	{
 		return new List<InputActions>() { this.requiredInput };
 	}
