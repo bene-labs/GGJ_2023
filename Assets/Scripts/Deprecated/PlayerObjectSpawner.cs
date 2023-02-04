@@ -80,11 +80,15 @@ public class PlayerObjectSpawner : MonoBehaviour
 	{
 		while (this.nextRootStart < this.viewport.WorldSpaceDimensions.xMax)
 		{
-			var root = Object.Instantiate(this.availableRoots.GetRandom());
-			root.transform.position = new Vector2(this.nextRootStart + root.Dimensions.width / 2, this.viewport.WorldSpaceDimensions.center.y);
-			this.generatedRoots.Add(root);
-			this.nextRootStart += this.rootSpacing + root.Dimensions.width;
+			this.GenerateOneRoot();
 		}
+	}
+	private void GenerateOneRoot()
+	{
+		var root = Object.Instantiate(this.availableRoots.GetRandom());
+		root.transform.position = new Vector2(this.nextRootStart + root.Dimensions.width / 2, this.viewport.WorldSpaceDimensions.center.y);
+		this.generatedRoots.Add(root);
+		this.nextRootStart += this.rootSpacing + root.Dimensions.width;
 	}
 
 	private void HandleViewportChange(Rect newRect)
@@ -113,10 +117,18 @@ public class PlayerObjectSpawner : MonoBehaviour
 	}
 	private void AdvanceToNextRoot()
 	{
+		this.EnsureNextRootPresent();
 		var nextRoot = this.CurrentRoot;
 		if (nextRoot != null)
 		{
 			this.viewport.CenterOn(nextRoot.WorldPosition);
+		}
+	}
+	private void EnsureNextRootPresent()
+	{
+		if (this.generatedRoots.Count == 0)
+		{
+			this.GenerateOneRoot();
 		}
 	}
 	public void SkipCurrentRoot()

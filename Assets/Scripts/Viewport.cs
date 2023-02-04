@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class Viewport : MonoBehaviour
 {
+	[SerializeField]
+	private float transitionDuration = 0;
+
 	public Rect WorldSpaceDimensions
 	{
 		get
@@ -30,10 +33,32 @@ public class Viewport : MonoBehaviour
 	private Vector2 lastResolution;
 	private float lastOrthographicSize;
 
+	private float? currentXTarget = null;
+	private float? transitionStartX = null;
+	private float? transitionStartTime = null;
+
+	public bool IsScrolling => this.currentXTarget != null;
+
 	void Awake()
 	{
 		this.camera = this.GetComponent<Camera>();
 		CheckChanges(triggerEvent: false);
+	}
+
+	void Update()
+	{
+		this.CheckChanges();
+		if (this.IsScrolling)
+		{
+			var t = Mathf.Clamp01((Time.time - this.transitionStartTime.Value) / this.transitionDuration);
+			this.transform.SetXPosition(this.currentXTarget.Value * t + this.transitionStartX.Value * (1 - t));
+			if (t >= 1)
+			{
+				this.currentXTarget = null;
+				this.transitionStartX = null;
+				this.transitionStartTime = null;
+			}
+		}
 	}
 
 	private void CheckChanges(bool triggerEvent = true)
@@ -54,11 +79,9 @@ public class Viewport : MonoBehaviour
 	public void CenterOn(Rect worldPosition)
 	{
 		var offset = worldPosition.x - this.WorldSpaceDimensions.center.x;
-		this.transform.position += new Vector3(offset, 0, 0);
-	}
 
-	void Update()
-	{
-		this.CheckChanges();
+		this.currentXTarget = this.transform.position.x + offset;
+		this.transitionStartX = this.transform.position.x;
+		this.transitionStartTime = Time.time;
 	}
 }

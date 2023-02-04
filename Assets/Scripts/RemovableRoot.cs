@@ -7,6 +7,9 @@ public class RemovableRoot : MonoBehaviour
 	[field: SerializeField]
 	public Rect Dimensions { get; private set; }
 
+	[field: SerializeField]
+	public RootInputBase[] possibleInputs { get; private set; }
+
 	public Rect WorldPosition => Dimensions.Offsetted(this.transform.position);
 
 	public InputActions[] displayedActions;

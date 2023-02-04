@@ -28,4 +28,11 @@ public static class ExtensionMethods
 	}
 
 	public static Rect Offsetted(this Rect rect, Vector2 offset) => new Rect(rect.position + offset, rect.size);
+
+	public static void SetXPosition(this Transform transform, float x)
+	{
+		var position = transform.position;
+		position.x = x;
+		transform.position = position;
+	}
 }
