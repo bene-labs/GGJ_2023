@@ -711,7 +711,7 @@ MonoBehaviour:
     y: 3
     width: 4
     height: 4
-  pullMinRotationDegrees: -135
+  pullMinRotationDegrees: 45
   pullMaxRotationDegrees: 135
   growDelay: 0.25
 --- !u!1 &1307682056
@@ -1002,7 +1002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1803759022725315409, guid: 59f2ac7cc954f314bbfa01d6f8c96964, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 191.1875
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1803759022725315409, guid: 59f2ac7cc954f314bbfa01d6f8c96964, type: 3}
       propertyPath: m_AnchoredPosition.y

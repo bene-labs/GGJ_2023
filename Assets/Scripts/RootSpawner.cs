@@ -72,7 +72,8 @@ public class RootSpawner : MonoBehaviour
 		var basePosition = (Vector2)root.transform.position;
 		Object.Instantiate(rootPullEffect, basePosition, Quaternion.identity);
 		var targetPosition = basePosition + pullMovementArea.RandomPoint();
-		var targetRotationDegrees = Random.Range(this.pullMinRotationDegrees, this.pullMaxRotationDegrees);
+		var negated = Random.Range(0, 2) == 0;
+		var targetRotationDegrees = Random.Range(this.pullMinRotationDegrees, this.pullMaxRotationDegrees) * (negated ? -1 : 1);
 		await root.Animate(this.pullAnimationDuration, t =>
 		{
 			var tx = this.pullXCurve.Evaluate(t);
