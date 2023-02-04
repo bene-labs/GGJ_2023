@@ -33,8 +33,13 @@ public class LevelTimer : MonoBehaviour
 
     private void DisplayVictoryScreen()
     {
-        this.gameObject.transform.GetChild(0).GetComponent<TextMeshPro>().text = playerOne.score > playerTwo.score ? "Player1 wins!" : "Player2 wins!";
-        
+        if (playerOne.score > playerTwo.score)
+            this.gameObject.transform.GetChild(0).GetComponent<TextMeshPro>().text = "Congrats Player1...";
+        else if  (playerOne.score <  playerTwo.score)
+            this.gameObject.transform.GetChild(0).GetComponent<TextMeshPro>().text = "Congrats Player2...";
+        else
+            this.gameObject.transform.GetChild(0).GetComponent<TextMeshPro>().text = "It's a Tie!";
+
         Destroy(playerOne);
         Destroy(playerTwo);
         
