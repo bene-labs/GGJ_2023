@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundSegment (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8405791314964035845, guid: 49caa52e102f23b4b8ab3bfed7910f2f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8405791314964035847, guid: 49caa52e102f23b4b8ab3bfed7910f2f, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -212,6 +216,8 @@ MonoBehaviour:
   availableRoots:
   - {fileID: 728346890804376197, guid: 06a28b047578749459795379100bc90e, type: 3}
   - {fileID: 728346890804376197, guid: 07fb3ba32fdff8e4d98f4333d984618d, type: 3}
+  groundSegments:
+  - {fileID: 8405791314964035846, guid: 49caa52e102f23b4b8ab3bfed7910f2f, type: 3}
   viewport: {fileID: 1307682060}
 --- !u!4 &865631471
 Transform:
@@ -238,6 +244,10 @@ PrefabInstance:
     - target: {fileID: 8405791314964035845, guid: 49caa52e102f23b4b8ab3bfed7910f2f, type: 3}
       propertyPath: m_Name
       value: GroundSegment (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405791314964035845, guid: 49caa52e102f23b4b8ab3bfed7910f2f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8405791314964035847, guid: 49caa52e102f23b4b8ab3bfed7910f2f, type: 3}
       propertyPath: m_RootOrder
@@ -393,6 +403,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundSegment (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8405791314964035845, guid: 49caa52e102f23b4b8ab3bfed7910f2f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8405791314964035847, guid: 49caa52e102f23b4b8ab3bfed7910f2f, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -449,6 +463,10 @@ PrefabInstance:
     - target: {fileID: 8405791314964035845, guid: 49caa52e102f23b4b8ab3bfed7910f2f, type: 3}
       propertyPath: m_Name
       value: GroundSegment (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405791314964035845, guid: 49caa52e102f23b4b8ab3bfed7910f2f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8405791314964035847, guid: 49caa52e102f23b4b8ab3bfed7910f2f, type: 3}
       propertyPath: m_RootOrder
@@ -563,6 +581,10 @@ PrefabInstance:
     - target: {fileID: 8405791314964035845, guid: 49caa52e102f23b4b8ab3bfed7910f2f, type: 3}
       propertyPath: m_Name
       value: GroundSegment
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405791314964035845, guid: 49caa52e102f23b4b8ab3bfed7910f2f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8405791314964035847, guid: 49caa52e102f23b4b8ab3bfed7910f2f, type: 3}
       propertyPath: m_RootOrder

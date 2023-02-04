@@ -9,10 +9,17 @@ public class Viewport : MonoBehaviour
 	{
 		get
 		{
-			var relativeRect = this.GetComponent<Camera>().rect;
-			var xFactor = this.lastOrthographicSize / Screen.height * Screen.width;
-			var yFactor = this.lastOrthographicSize;
-			return new Rect(relativeRect.x * xFactor, relativeRect.y * yFactor, relativeRect.width * xFactor, relativeRect.height * yFactor);
+			var screenSize = new Vector2(Screen.width, Screen.height);
+			var relativeRect = this.camera.rect;
+			var pixelsPerUnit = Screen.height / this.lastOrthographicSize * relativeRect.height;
+			var unitsPerPixel = this.lastOrthographicSize / (Screen.height * relativeRect.height);
+			var pixelsRect = new Rect(relativeRect.x * Screen.width, relativeRect.y * Screen.width, relativeRect.width * Screen.width, relativeRect.height * Screen.width);
+			var unitsRect = new Rect(pixelsRect.x * unitsPerPixel, pixelsRect.y * unitsPerPixel, pixelsRect.width * unitsPerPixel, pixelsRect.height * unitsPerPixel);
+			var xFactor = Screen.height / pixelsPerUnit;
+			var yFactor = Screen.width / pixelsPerUnit;
+			var worldSpaceOffset = ((Vector2)this.transform.position) + unitsRect.center;
+			// TODO(rw): adjust based on camera position
+			return new Rect(-worldSpaceOffset, unitsRect.size);
 		}
 	}
 
