@@ -127,8 +127,6 @@ public class PlayerGameplay : MonoBehaviour
 			this.inputCount.gameObject.SetActive(false);
 			this.inputPrompts.SetAllGameObjectsActive(false);
 		}
-
-		Debug.LogFormat("remaining elements: {0}", this.inputPrompts.Count);
 	}
 	private InputPrompt InstantiatePrompt()
 	{
