@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class Countdown : MonoBehaviour
+public class Countdown : IGameplaySection
 {
 	[SerializeField]
 	private bool autoStart;
+	[SerializeField]
+	private GameProgression gameProgression;
 
 	[Header("Numbers")]
 	[SerializeField]
@@ -33,7 +35,7 @@ public class Countdown : MonoBehaviour
 	private AnimationCurve goScaleCurve;
 
 
-	void Start()
+	protected override void InitSectionGameplay()
 	{
 		if (this.autoStart)
 		{
@@ -64,7 +66,7 @@ public class Countdown : MonoBehaviour
 		Debug.LogFormat("Go");
 		await this.Animate(this.numberAnimationDuration, this.ApplyGoState);
 		this.goElement.gameObject.SetActive(false);
-		this.gameObject.SetActive(false);
+		this.gameProgression.Advance();
 	}
 
 	private void ApplyNumberState(int index, float t)
@@ -82,5 +84,14 @@ public class Countdown : MonoBehaviour
 		var scale = this.goScaleCurve.Evaluate(t);
 		element.transform.localScale = new Vector3(scale, scale, scale);
 		element.transform.rotation = Quaternion.Euler(0, 0, this.goRotationDegreeCurve.Evaluate(t));
+	}
+
+	protected override void CleanupSectionGameplay()
+	{
+		this.gameObject.SetActive(false);
+	}
+
+	protected override void UpdateSectionGameplay()
+	{
 	}
 }
