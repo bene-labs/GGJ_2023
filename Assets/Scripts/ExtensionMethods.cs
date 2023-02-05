@@ -35,6 +35,12 @@ public static class ExtensionMethods
 		position.x = x;
 		transform.position = position;
 	}
+	public static void SetAnchoredYPosition(this RectTransform transform, float y)
+	{
+		var position = transform.anchoredPosition;
+		position.y = y;
+		transform.anchoredPosition = position;
+	}
 
 	public static TEnum GetRandomValue<TEnum>(this System.Type type) where TEnum : System.Enum
 	{
