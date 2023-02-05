@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class RemovableRoot : MonoBehaviour
 {
@@ -10,7 +12,8 @@ public class RemovableRoot : MonoBehaviour
 	[field: SerializeField]
 	public RootInputBase[] possibleInputs { get; private set; }
 
-	[SerializeField]
+	[FormerlySerializedAs("spriteRenderers")] [SerializeField]
+	private Sprite[] sprites;
 	private SpriteRenderer spriteRenderer;
 
 	public Rect WorldPosition => this.Dimensions.Offsetted(this.transform.position);
@@ -18,6 +21,12 @@ public class RemovableRoot : MonoBehaviour
 	public InputActions[] displayedActions;
 	[field: SerializeField]
 	public bool IsGood;
+
+	public void Start()
+	{
+		spriteRenderer = GetComponent<SpriteRenderer>();
+		spriteRenderer.sprite = sprites.GetRandom();
+	}
 
 	public void SetAlpha(float alpha)
 	{
