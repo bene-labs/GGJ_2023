@@ -26,8 +26,8 @@ public class InputSequence : RootInputBase
 	{
 		return 100 + requiredInputs.Count * 2 * requiredInputs.Count;
 	}
-	
-	public override bool HandleInputs(Dictionary<InputActions, bool> inputs, out float? progress, out bool updatePrompts, out bool isCorrectInput)
+
+	public override bool HandleInputs(Dictionary<InputActions, bool> inputs, out float? progress, out bool updatePrompts, out bool? isCorrectInput)
 	{
 		progress = this.correctInputs * 1.0f / this.requiredInputs.Count;
 		var optionalNextInput = this.NextRequiredInput;
@@ -52,7 +52,7 @@ public class InputSequence : RootInputBase
 			else
 			{
 				updatePrompts = false;
-				isCorrectInput = false;
+				isCorrectInput = null;
 				return false;
 			}
 		}

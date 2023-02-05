@@ -25,7 +25,7 @@ public class RepeatedSingleButtonInput : RootInputBase
 	{
 		return 100 + requiredInputCount * 2;
 	}
-	
+
 	protected override void Initialize()
 	{
 		this.requiredInput = typeof(InputActions).GetRandomValue<InputActions>();
@@ -33,7 +33,7 @@ public class RepeatedSingleButtonInput : RootInputBase
 		this.requiredInputCount = Random.Range(this.minInputCount, this.maxInputCount + 1);
 	}
 
-	public override bool HandleInputs(Dictionary<InputActions, bool> inputs, out float? progress, out bool updatePrompts, out bool isCorrectInput)
+	public override bool HandleInputs(Dictionary<InputActions, bool> inputs, out float? progress, out bool updatePrompts, out bool? isCorrectInput)
 	{
 		var pressedButtons = inputs.Count(pair => pair.Value);
 		if (inputs[this.requiredInput])
@@ -51,7 +51,7 @@ public class RepeatedSingleButtonInput : RootInputBase
 		else
 		{
 			updatePrompts = false;
-			isCorrectInput = false;
+			isCorrectInput = null;
 		}
 		progress = this.currentInputCount * 1.0f / this.requiredInputCount;
 		return this.currentInputCount >= this.requiredInputCount;

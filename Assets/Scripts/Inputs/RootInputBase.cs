@@ -18,10 +18,12 @@ public abstract class RootInputBase : ScriptableObject
 		Object.Destroy(this);
 	}
 
+	virtual public bool UseCircularIndicator => false;
+
 	abstract protected void Initialize();
 
 	abstract public int getScoreValue();
-	
+
 	abstract public List<InputActions> GetInputPrompts();
 	abstract public InputActions? NextRequiredInput { get; }
 	abstract public bool IsRepeatedInput { get; }
@@ -34,5 +36,5 @@ public abstract class RootInputBase : ScriptableObject
 	/// <param name="progress"></param>
 	/// <param name="buttonPrompt"></param>
 	/// <returns></returns>
-	abstract public bool HandleInputs(Dictionary<InputActions, bool> inputs, out float? progress, out bool updatePrompts, out bool isCorrectInput);
+	abstract public bool HandleInputs(Dictionary<InputActions, bool> inputs, out float? progress, out bool updatePrompts, out bool? isCorrectInput);
 }
