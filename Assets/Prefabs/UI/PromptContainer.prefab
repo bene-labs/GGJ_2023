@@ -354,7 +354,7 @@ MonoBehaviour:
   m_MinWidth: 2
   m_MinHeight: -1
   m_PreferredWidth: 2
-  m_PreferredHeight: -1
+  m_PreferredHeight: 128
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -603,6 +603,14 @@ PrefabInstance:
     - target: {fileID: 5616974448854009030, guid: cd962a409b44cb0498ef39460323e4f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150710369176515980, guid: cd962a409b44cb0498ef39460323e4f9, type: 3}
+      propertyPath: m_PreferredWidth
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150710369176515980, guid: cd962a409b44cb0498ef39460323e4f9, type: 3}
+      propertyPath: m_PreferredHeight
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 7390278644095089155, guid: cd962a409b44cb0498ef39460323e4f9, type: 3}
       propertyPath: m_Name

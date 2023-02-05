@@ -314,7 +314,7 @@ MonoBehaviour:
   goodImage: {fileID: 2448205021188450164}
   lowerBadImage: {fileID: 3310353328016579622}
   indicator: {fileID: 7020027517331431022}
-  minScale: 0
+  minScale: 0.25
 --- !u!1 &7575555967422287366
 GameObject:
   m_ObjectHideFlags: 0
