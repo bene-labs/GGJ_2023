@@ -82,6 +82,11 @@ public class TurnipMama : MonoBehaviour
         }
     }
 
+    void CalmDown()
+    {
+        isAngry = false;
+    }
+    
     void HandlePlayerInputs()
     {
         playerOneInputs[InputActions.Neutral] = Input.GetButton(InputActions.Neutral.ToInputName(0));
