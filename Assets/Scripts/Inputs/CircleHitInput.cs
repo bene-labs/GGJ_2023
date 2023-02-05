@@ -22,7 +22,11 @@ public class CircleHitInput : RootInputBase
 	[SerializeField]
 	private float cycleDuration = 2;
 	[SerializeField]
-	private int score = 25;
+	private int score = 15;
+	[SerializeField]
+	private int minCount = 2;
+	[SerializeField]
+	private int maxCount = 4;
 
 
 	public InputActions requiredInput { get; private set; }
@@ -30,6 +34,8 @@ public class CircleHitInput : RootInputBase
 
 	private float currentT = 0;
 	public float currentTime { get; private set; }
+	private int successCount;
+	private int requiredCount;
 
 	public override List<InputActions> GetInputPrompts()
 	{
@@ -38,12 +44,18 @@ public class CircleHitInput : RootInputBase
 
 	public override int getScoreValue()
 	{
-		return this.score;
+		return this.score * this.requiredCount;
 	}
 
 	protected override void Initialize()
 	{
 		this.currentT = 0;
+		this.successCount = 0;
+		this.requiredCount = Random.Range(this.minCount, this.maxCount + 1);
+		this.GenerateNextInput();
+	}
+	private void GenerateNextInput()
+	{
 		this.requiredInput = typeof(InputActions).GetRandomValue<InputActions>();
 		this.requiredInputList.Add(this.requiredInput);
 	}
@@ -60,8 +72,9 @@ public class CircleHitInput : RootInputBase
 		{
 			if (this.currentTime >= this.minTime && this.currentTime < this.maxTime)
 			{
+				this.HandleSuccessInput();
 				success = true;
-				return true;
+				return this.successCount >= this.requiredCount;
 			}
 			else
 			{
@@ -73,5 +86,14 @@ public class CircleHitInput : RootInputBase
 			success = null;
 		}
 		return false;
+	}
+
+	private void HandleSuccessInput()
+	{
+		this.successCount += 1;
+		if (this.successCount < this.requiredCount)
+		{
+			this.GenerateNextInput();
+		}
 	}
 }

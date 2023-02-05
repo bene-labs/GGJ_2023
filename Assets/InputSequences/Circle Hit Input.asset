@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1994afe667cf943af7f5df9715b8d8, type: 3}
   m_Name: Circle Hit Input
   m_EditorClassIdentifier: 
-  minTime: 0.4
-  maxTime: 0.6
+  <minTime>k__BackingField: 0.4
+  <maxTime>k__BackingField: 0.6
   timeMovement:
     serializedVersion: 2
     m_Curve:
@@ -39,3 +39,6 @@ MonoBehaviour:
     m_PostInfinity: 0
     m_RotationOrder: 4
   cycleDuration: 2
+  score: 15
+  minCount: 2
+  maxCount: 4
