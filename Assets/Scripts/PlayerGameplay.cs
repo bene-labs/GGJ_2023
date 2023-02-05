@@ -38,7 +38,8 @@ public class PlayerGameplay : IGameplaySection
 	private Task removeTask;
 
 	public int score = 0;
-
+	public AudioClip collectSound;
+	
 	private Task uiFadeTask;
 
 	private Dictionary<InputActions, bool> inputs = new() {
@@ -98,6 +99,7 @@ public class PlayerGameplay : IGameplaySection
 					{
 						score += this.currentInput.getScoreValue();
 						Debug.Log("Points got: " + this.currentInput.getScoreValue().ToString());
+						AudioSource.PlayClipAtPoint(collectSound, this.transform.position);
 						this.removeTask = this.spawner.RemoveRoot();
 						this.UpdatePrompt();
 					}

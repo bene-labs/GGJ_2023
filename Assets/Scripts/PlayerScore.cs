@@ -50,11 +50,15 @@ public class PlayerScore : MonoBehaviour
         {
             incomingPoints = (int) (addedPoints - addedPoints * t);
             score = (int) (previousScore + addedPoints * t);
+            if (score < 0)
+                score = 0;
             text.text = score + (addedPoints > 0 ? " +" : " -") + Mathf.Abs(incomingPoints);
         });
         incomingPoints = 0;
         addedPoints = 0;
         score = targetScore;
+        if (score < 0)
+            score = 0;
         text.color = Color.white;
         text.text = score.ToString();
     } 
