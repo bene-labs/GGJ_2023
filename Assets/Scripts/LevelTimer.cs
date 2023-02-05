@@ -28,7 +28,7 @@ public class LevelTimer : MonoBehaviour
     {
         _timeCounter += Time.deltaTime;
 
-        text.text = "Time left: " + String.Format("{0:0.00}", (timeLimit - _timeCounter / 60));
+        text.text = "Time left: " + System.TimeSpan.FromMinutes((timeLimit - _timeCounter / 60)).ToString(@"m\:ss");
         if (_timeCounter / 60 > timeLimit)
         {
             DisplayVictoryScreen();
