@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameProgression : MonoBehaviour
 {
+	private static bool isFirstStart;
+
+	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+	static void Init()
+	{
+		isFirstStart = true;
+	}
+
 	[SerializeField]
 	private IGameplaySection[] titleElements;
 	[SerializeField]
@@ -28,6 +36,11 @@ public class GameProgression : MonoBehaviour
 
 	void Start()
 	{
+		if (!isFirstStart)
+		{
+			this.state = State.Title;
+		}
+		isFirstStart = false;
 		this.Advance();
 	}
 
