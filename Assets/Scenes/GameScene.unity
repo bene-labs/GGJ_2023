@@ -876,6 +876,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1bbac1014face4794e0b0dfd9193d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1504764792 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4548991560446901963, guid: 7b8dd0428fda85a49be8f49b2dfa8524, type: 3}
+  m_PrefabInstance: {fileID: 2264528033266722569}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a89f96749b475b3459b8990a502912b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1543689585 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2264528034407395960, guid: 7b8dd0428fda85a49be8f49b2dfa8524, type: 3}
@@ -1719,7 +1730,7 @@ PrefabInstance:
       objectReference: {fileID: 871724153}
     - target: {fileID: 7987381384720010588, guid: 7b8dd0428fda85a49be8f49b2dfa8524, type: 3}
       propertyPath: timeLimit
-      value: 1
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 7987381384720010588, guid: 7b8dd0428fda85a49be8f49b2dfa8524, type: 3}
       propertyPath: gameProgression
@@ -1793,7 +1804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 874237419059474563, guid: 6ec3abaef2d97134199d61d597b90f92, type: 3}
       propertyPath: postGameElements.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 874237419059474563, guid: 6ec3abaef2d97134199d61d597b90f92, type: 3}
       propertyPath: titleElements.Array.data[0]
@@ -1807,6 +1818,10 @@ PrefabInstance:
       propertyPath: postGameElements.Array.data[0]
       value: 
       objectReference: {fileID: 2264528033266722572}
+    - target: {fileID: 874237419059474563, guid: 6ec3abaef2d97134199d61d597b90f92, type: 3}
+      propertyPath: postGameElements.Array.data[1]
+      value: 
+      objectReference: {fileID: 1504764792}
     - target: {fileID: 4550668658837456613, guid: 6ec3abaef2d97134199d61d597b90f92, type: 3}
       propertyPath: m_Name
       value: GameProgression
