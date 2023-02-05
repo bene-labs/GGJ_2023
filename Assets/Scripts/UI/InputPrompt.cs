@@ -17,17 +17,20 @@ public class InputPrompt : MonoBehaviour
 		this.regularSprite = imageElement.sprite;
 	}
 
-	public void ApplyInput(InputActions input, bool done = false)
+	public void ApplyInput(InputActions? input = null, bool done = false)
 	{
-		var rotationDegrees = input switch
+		if (input != null)
 		{
-			InputActions.Neutral => 180,
-			InputActions.Down => 90,
-			InputActions.Up => 0,
-			InputActions.Decline => -90,
-			_ => 0,
-		};
-		this.transform.rotation = Quaternion.Euler(0, 0, rotationDegrees);
+			var rotationDegrees = input.Value switch
+			{
+				InputActions.Neutral => 180,
+				InputActions.Down => 90,
+				InputActions.Up => 0,
+				InputActions.Decline => -90,
+				_ => 0,
+			};
+			this.transform.rotation = Quaternion.Euler(0, 0, rotationDegrees);
+		}
 		this.imageElement.sprite = done ? this.doneSprite : this.regularSprite;
 	}
 }

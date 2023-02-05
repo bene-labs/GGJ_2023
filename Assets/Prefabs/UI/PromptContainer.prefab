@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 1803759022725315409}
   - component: {fileID: 1803759022725315411}
   - component: {fileID: 981256692}
+  - component: {fileID: 5838483528326445824}
   m_Layer: 5
   m_Name: PromptContainer
   m_TagString: Untagged
@@ -356,6 +357,18 @@ MonoBehaviour:
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!225 &5838483528326445824
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803759022725315408}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1803759023243572213
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,11 +21,25 @@ public class PlayerGameplay : MonoBehaviour
 	[SerializeField]
 	private int playerIndex;
 
+	[Header("UI Fading")]
+	[SerializeField]
+	private CanvasGroup fadedElement;
+	[SerializeField]
+	private float fadeOutDuration;
+	[SerializeField]
+	private AnimationCurve fadeOutCurve;
+	[SerializeField]
+	private float fadeInDuration;
+	[SerializeField]
+	private AnimationCurve fadeInCurve;
+
 	private Task<RootInputBase> currentRootTask = null;
 	private RootInputBase currentInput = null;
 	private Task removeTask;
 
 	public int score = 0;
+
+	private Task uiFadeTask;
 
 	private Dictionary<InputActions, bool> inputs = new() {
 		{InputActions.Neutral, false},
@@ -39,6 +53,7 @@ public class PlayerGameplay : MonoBehaviour
 		Debug.Assert(this.viewport != null, "PlayerGameplay: no viewport assigned!", this);
 		Debug.Assert(this.spawner != null, "PlayerGameplay: no PlayerObjectSpawner assigned!", this);
 		Debug.Assert(this.availableRoots != null && availableRoots.Length > 0, "no roots assigned!", this);
+		this.inputCount.gameObject.SetActive(false);
 		this.UpdatePrompt();
 	}
 
@@ -130,9 +145,33 @@ public class PlayerGameplay : MonoBehaviour
 		}
 		else
 		{
-			this.inputCount.gameObject.SetActive(false);
-			this.inputPrompts.SetAllGameObjectsActive(false);
+			if (this.currentInput != null && this.removeTask != null)
+			{
+				if (this.fadedElement.alpha > 0 && this.uiFadeTask == null)
+				{
+					this.uiFadeTask = this.FadeOutUI();
+				}
+			}
 		}
+	}
+	private async Task FadeOutUI()
+	{
+		if (this.inputCount.gameObject.activeInHierarchy)
+		{
+			this.inputCount.ApplyCount(0);
+		}
+		foreach (var prompt in this.inputPrompts)
+		{
+			prompt.ApplyInput(done: true);
+		}
+		await this.fadedElement.Animate(this.fadeOutDuration, t =>
+		{
+			this.fadedElement.alpha = 1 - this.fadeOutCurve.Evaluate(t);
+		});
+		this.inputCount.gameObject.SetActive(false);
+		this.inputPrompts.SetAllGameObjectsActive(false);
+		this.uiFadeTask = null;
+		this.fadedElement.alpha = 1;
 	}
 	private InputPrompt InstantiatePrompt()
 	{
