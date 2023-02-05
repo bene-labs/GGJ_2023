@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpawnSpeed: 0.16666667
   maxSpawnSpeed: 0.5
-  pointMalus: 100
+  pointMalus: 150
   jumpScarePrefab: {fileID: 2513812707804801069, guid: 62b2c8b28edc1324fb1c7b2f6ccc258b, type: 3}
 --- !u!95 &7919460916129414848
 Animator:
