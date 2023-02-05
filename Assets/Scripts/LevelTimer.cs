@@ -42,6 +42,7 @@ public class LevelTimer : MonoBehaviour
 
         Destroy(playerOne);
         Destroy(playerTwo);
+        Destroy(GameObject.Find("TurnipMamaSpawner"));
         
         this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }

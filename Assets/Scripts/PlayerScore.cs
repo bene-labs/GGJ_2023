@@ -19,7 +19,7 @@ public class PlayerScore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.score > score)
+        if (player.score != score)
         {
             score = player.score;
             text.SetText(score.ToString());
