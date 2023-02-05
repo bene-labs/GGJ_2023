@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,12 +13,14 @@ public class LevelTimer : MonoBehaviour
     [Tooltip("Measured in Minutes")] 
     public float timeLimit = 3.0f; 
     private float _timeCounter = 0.0f;
-    
+
+    private TextMeshPro text;
     
     // Start is called before the first frame update
     void Start()
     {
         this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        text = GetComponent<TextMeshPro>();
     }
 
     // Update is called once per frame
@@ -25,6 +28,7 @@ public class LevelTimer : MonoBehaviour
     {
         _timeCounter += Time.deltaTime;
 
+        text.text = "Time left: " + String.Format("{0:0.00}", (timeLimit - _timeCounter / 60));
         if (_timeCounter / 60 > timeLimit)
         {
             DisplayVictoryScreen();
@@ -33,6 +37,8 @@ public class LevelTimer : MonoBehaviour
 
     private void DisplayVictoryScreen()
     {
+        text.enabled = false;
+        
         if (playerOne.score > playerTwo.score)
             this.gameObject.transform.GetChild(0).GetComponent<TextMeshPro>().text = "Congrats Player1...";
         else if  (playerOne.score <  playerTwo.score)

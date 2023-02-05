@@ -589,6 +589,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelTimer
       objectReference: {fileID: 0}
+    - target: {fileID: 3275873496559216089, guid: 9c236b0d03726eb4fb1f8025a73b8f8f, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275873496559216089, guid: 9c236b0d03726eb4fb1f8025a73b8f8f, type: 3}
+      propertyPath: m_renderer
+      value: 
+      objectReference: {fileID: 1716593133}
+    - target: {fileID: 7793390471496462923, guid: 9c236b0d03726eb4fb1f8025a73b8f8f, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7793390471496462923, guid: 9c236b0d03726eb4fb1f8025a73b8f8f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.28406516
+      objectReference: {fileID: 0}
+    - target: {fileID: 7793390471496462923, guid: 9c236b0d03726eb4fb1f8025a73b8f8f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.28406516
+      objectReference: {fileID: 0}
+    - target: {fileID: 7793390471496462923, guid: 9c236b0d03726eb4fb1f8025a73b8f8f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.28406516
+      objectReference: {fileID: 0}
+    - target: {fileID: 7793390471496462923, guid: 9c236b0d03726eb4fb1f8025a73b8f8f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.2031
+      objectReference: {fileID: 0}
+    - target: {fileID: 7793390471496462923, guid: 9c236b0d03726eb4fb1f8025a73b8f8f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.17
+      objectReference: {fileID: 0}
     - target: {fileID: 8193693910746868483, guid: 9c236b0d03726eb4fb1f8025a73b8f8f, type: 3}
       propertyPath: playerOne
       value: 
@@ -903,6 +935,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017c1765ed7f90d45b4243ddd33c0be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!23 &1716593133 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7219671906612045913, guid: 9c236b0d03726eb4fb1f8025a73b8f8f, type: 3}
+  m_PrefabInstance: {fileID: 1129447766}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2039781411 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -181525422499440196, guid: dfcb885960cf8d74f933cc7687e2441c, type: 3}
