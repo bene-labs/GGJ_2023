@@ -70,10 +70,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -655408401
-  m_SortingLayer: -3
+  m_SortingLayerID: 1784329269
+  m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4dec5cc0f3d947740af2d503e0bcd1e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 85418af997970ed4392e83b6f01be4b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,10 +93,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3828172082968353499}
-  - component: {fileID: 6116380998989859211}
-  - component: {fileID: 7919460916129414848}
+  - component: {fileID: 4983520278660531582}
+  - component: {fileID: 4367771000112705108}
   m_Layer: 0
-  m_Name: TurnipMama
+  m_Name: CursedTurnipMama
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,7 +118,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6116380998989859211
+--- !u!114 &4983520278660531582
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,14 +127,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2513812707804801069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f83700a0315c5a743891a6a3b13f00dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 5374c68e400c7804ba268639e53ed0bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpawnSpeed: 0.16666667
-  maxSpawnSpeed: 0.5
-  pointMalus: 100
-  jumpScarePrefab: {fileID: 2513812707804801069, guid: 62b2c8b28edc1324fb1c7b2f6ccc258b, type: 3}
---- !u!95 &7919460916129414848
+--- !u!95 &4367771000112705108
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -144,7 +140,7 @@ Animator:
   m_GameObject: {fileID: 2513812707804801069}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 454cf2efd8f67994aa73b38992cf1014, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5436125b736be7e4c8b5938eb45e34c9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

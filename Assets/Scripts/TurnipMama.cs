@@ -17,6 +17,8 @@ public class TurnipMama : MonoBehaviour
     private float _dangerLevel = 0.0f;
     private bool isAngry = false;
 
+    public GameObject jumpScarePrefab;
+    
     private GameObject playerOne;
     private GameObject playerTwo;
     
@@ -104,6 +106,7 @@ public class TurnipMama : MonoBehaviour
         
         if (playerOneInputs.ContainsValue(true) || playerTwoInputs.ContainsValue(true))
         {
+            Instantiate(jumpScarePrefab);
             Destroy(this.gameObject);
         }
     }

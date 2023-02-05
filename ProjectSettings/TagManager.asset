@@ -68,3 +68,6 @@ TagManager:
   - name: InputPrompts
     uniqueID: 3099177125
     locked: 0
+  - name: JumpScare
+    uniqueID: 1784329269
+    locked: 0
