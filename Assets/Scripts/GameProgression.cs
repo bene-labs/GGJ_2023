@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameProgression : MonoBehaviour
 {
 	[SerializeField]
+	private IGameplaySection[] titleElements;
+	[SerializeField]
 	private IGameplaySection[] preGameElements;
 	[SerializeField]
 	private IGameplaySection[] gameElements;
@@ -16,6 +18,7 @@ public class GameProgression : MonoBehaviour
 
 	private IGameplaySection[] currentElements => this.state switch
 	{
+		State.Title => this.titleElements,
 		State.PreGame => this.preGameElements,
 		State.Game => this.gameElements,
 		State.PostGame => this.postGameElements,
@@ -50,6 +53,7 @@ public class GameProgression : MonoBehaviour
 
 	public enum State
 	{
+		Title,
 		PreGame,
 		Game,
 		PostGame,
@@ -58,18 +62,13 @@ public class GameProgression : MonoBehaviour
 
 public static class GameProgressionStateExtensions
 {
-	public static GameProgression.State? Next(this GameProgression.State? state) => state switch
-	{
-		GameProgression.State.PreGame => GameProgression.State.Game,
-		GameProgression.State.Game => GameProgression.State.PostGame,
-		GameProgression.State.PostGame => null,
-		_ => GameProgression.State.PreGame,
-	};
+	public static GameProgression.State? Next(this GameProgression.State? state) => state == null ? GameProgression.State.Title : state.Value.Next();
 	public static GameProgression.State? Next(this GameProgression.State state) => state switch
 	{
+		GameProgression.State.Title => GameProgression.State.PreGame,
 		GameProgression.State.PreGame => GameProgression.State.Game,
 		GameProgression.State.Game => GameProgression.State.PostGame,
 		GameProgression.State.PostGame => null,
-		_ => GameProgression.State.PreGame,
+		_ => GameProgression.State.Title,
 	};
 }
