@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9106737267334475124}
   - component: {fileID: 874237419059474563}
+  - component: {fileID: 4275864549029894554}
   m_Layer: 0
   m_Name: GameProgression
   m_TagString: Untagged
@@ -44,6 +45,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39f85761d6a3d749b726b0e50c2b30e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleElements: []
   preGameElements: []
   gameElements: []
   postGameElements: []
+--- !u!114 &4275864549029894554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4550668658837456613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3490261f238dd5a43bc02e902b4fc217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
