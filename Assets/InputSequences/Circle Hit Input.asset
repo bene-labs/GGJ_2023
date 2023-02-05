@@ -39,6 +39,6 @@ MonoBehaviour:
     m_PostInfinity: 0
     m_RotationOrder: 4
   cycleDuration: 2
-  score: 15
+  score: 30
   minCount: 2
   maxCount: 4

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [CreateAssetMenu(menuName = "roots/Circle Input")]
 public class CircleHitInput : RootInputBase
@@ -63,18 +64,28 @@ public class CircleHitInput : RootInputBase
 
 	public override bool HandleInputs(Dictionary<InputActions, bool> inputs, out float? progress, out bool updatePrompts, out bool? success)
 	{
+		var pressCount = inputs.Count(pair => pair.Value);
 		this.currentT += (Time.deltaTime / this.cycleDuration) % 1;
 		this.currentTime = this.timeMovement.Evaluate(this.currentT);
 		progress = this.currentTime;
 		var isPressed = inputs[this.requiredInput];
 		updatePrompts = true;
-		if (isPressed)
+		if (pressCount > 0)
 		{
-			if (this.currentTime >= this.minTime && this.currentTime < this.maxTime)
+			if (isPressed)
 			{
-				this.HandleSuccessInput();
-				success = true;
-				return this.successCount >= this.requiredCount;
+				if (this.currentTime >= this.minTime && this.currentTime < this.maxTime)
+				{
+					this.HandleSuccessInput();
+					success = true;
+					return this.successCount >= this.requiredCount;
+				}
+				else
+				{
+					this.currentT = 0;
+					this.currentTime = 0;
+					success = false;
+				}
 			}
 			else
 			{
