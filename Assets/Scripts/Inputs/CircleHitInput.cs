@@ -78,6 +78,8 @@ public class CircleHitInput : RootInputBase
 			}
 			else
 			{
+				this.currentT = 0;
+				this.currentTime = 0;
 				success = false;
 			}
 		}
