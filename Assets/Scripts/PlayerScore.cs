@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerScore : MonoBehaviour
 {
     public PlayerGameplay player;
-
+    
     public int score = 0;
     private int previousScore = 0;
     public float scoreAnimationSpeed = 1.0f;
@@ -26,6 +26,10 @@ public class PlayerScore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (score < 0)
+        {
+            score = 0;
+        }
         if (player.score != targetScore)
         {
             previousScore = score;

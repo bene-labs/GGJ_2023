@@ -23,7 +23,7 @@ public class RepeatedSingleButtonInput : RootInputBase
 
 	public override int getScoreValue()
 	{
-		return requiredInputCount * 2;
+		return 100 + requiredInputCount * 2;
 	}
 	
 	protected override void Initialize()

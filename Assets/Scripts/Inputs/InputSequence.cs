@@ -24,7 +24,7 @@ public class InputSequence : RootInputBase
 
 	public override int getScoreValue()
 	{
-		return requiredInputs.Count * 2 * requiredInputs.Count;
+		return 100 + requiredInputs.Count * 2 * requiredInputs.Count;
 	}
 	
 	public override bool HandleInputs(Dictionary<InputActions, bool> inputs, out float? progress, out bool updatePrompts, out bool isCorrectInput)
