@@ -17,11 +17,11 @@ public class LevelTimer : IGameplaySection
 	[SerializeField]
 	private GameProgression gameProgression;
 
-	private TextMeshPro text;
+	private TextMeshProUGUI text;
 
 	override protected void InitSectionGameplay()
 	{
-		text = GetComponent<TextMeshPro>();
+		text = GetComponent<TextMeshProUGUI>();
 	}
 
 	protected override void CleanupSectionGameplay()
