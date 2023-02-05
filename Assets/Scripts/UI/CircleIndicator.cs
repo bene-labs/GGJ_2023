@@ -16,9 +16,15 @@ public class CircleIndicator : MonoBehaviour
 
 	public void Apply(float min, float max, float t, InputActions requiredInput)
 	{
-		t = (t * (1 - this.minScale)) + this.minScale;
+		AdjustForMinScale(ref t);
+		AdjustForMinScale(ref min);
+		AdjustForMinScale(ref max);
 		this.goodImage.localScale = new Vector3(max, max, max);
 		this.lowerBadImage.localScale = new Vector3(min, min, min);
 		this.indicator.localScale = new Vector3(t, t, t);
+	}
+	private void AdjustForMinScale(ref float value)
+	{
+		value = (value * (1 - this.minScale)) + this.minScale;
 	}
 }
