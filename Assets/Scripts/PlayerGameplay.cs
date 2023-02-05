@@ -42,6 +42,9 @@ public class PlayerGameplay : IGameplaySection
 	
 	private Task uiFadeTask;
 
+	public AudioClip confirm;
+	public AudioClip deny;
+
 	private Dictionary<InputActions, bool> inputs = new() {
 		{InputActions.Neutral, false},
 		{InputActions.Down, false},
@@ -95,7 +98,7 @@ public class PlayerGameplay : IGameplaySection
 			{
 				if (this.removeTask == null)
 				{
-					if (this.currentInput.HandleInputs(this.inputs, out var progress, out var updateInputPrompt))
+					if (this.currentInput.HandleInputs(this.inputs, out var progress, out var updateInputPrompt, out var isCorrectInput))
 					{
 						score += this.currentInput.getScoreValue();
 						Debug.Log("Points got: " + this.currentInput.getScoreValue().ToString());
@@ -107,6 +110,10 @@ public class PlayerGameplay : IGameplaySection
 					{
 						if (updateInputPrompt)
 						{
+							if (isCorrectInput)
+								AudioSource.PlayClipAtPoint(confirm, this.transform.position, 0.7f);
+							else
+								AudioSource.PlayClipAtPoint(deny, this.transform.position, 0.7f);
 							this.UpdatePrompt();
 						}
 					}

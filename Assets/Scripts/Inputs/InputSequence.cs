@@ -27,7 +27,7 @@ public class InputSequence : RootInputBase
 		return requiredInputs.Count * 2 * requiredInputs.Count;
 	}
 	
-	public override bool HandleInputs(Dictionary<InputActions, bool> inputs, out float? progress, out bool updatePrompts)
+	public override bool HandleInputs(Dictionary<InputActions, bool> inputs, out float? progress, out bool updatePrompts, out bool isCorrectInput)
 	{
 		progress = this.correctInputs * 1.0f / this.requiredInputs.Count;
 		var optionalNextInput = this.NextRequiredInput;
@@ -39,22 +39,26 @@ public class InputSequence : RootInputBase
 			{
 				this.correctInputs += 1;
 				updatePrompts = true;
+				isCorrectInput = true;
 				return this.RemainingInputCount == 0;
 			}
 			else if (pressedButtons > 0)
 			{
 				this.correctInputs = 0;
 				updatePrompts = true;
+				isCorrectInput = false;
 				return false;
 			}
 			else
 			{
 				updatePrompts = false;
+				isCorrectInput = false;
 				return false;
 			}
 		}
 		else
 		{
+			isCorrectInput = false;
 			updatePrompts = true;
 			return true;
 		}

@@ -318,6 +318,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   score: 0
   collectSound: {fileID: 8300000, guid: cd8df4431e3a025439c0b64bf7087045, type: 3}
+  confirm: {fileID: 8300000, guid: 81cf139f85713a4478d27b4249719a3a, type: 3}
+  deny: {fileID: 8300000, guid: e62679fcf80257e4a81d3704a4d9e103, type: 3}
 --- !u!1 &1198033972091988314
 GameObject:
   m_ObjectHideFlags: 0
