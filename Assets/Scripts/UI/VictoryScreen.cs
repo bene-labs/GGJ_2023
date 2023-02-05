@@ -6,7 +6,7 @@ using UnityEngine;
 public class VictoryScreen : IGameplaySection
 {
 	[SerializeField]
-	private TextMeshPro textElement;
+	private TextMeshProUGUI textElement;
 	[SerializeField]
 	public PlayerGameplay playerOne;
 	[SerializeField]
