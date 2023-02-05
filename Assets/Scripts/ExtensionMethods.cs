@@ -75,6 +75,13 @@ public static class ExtensionMethods
 			component.gameObject.SetActive(active);
 		}
 	}
+	public static void SetAllGameObjectsActive<T>(this T[] components, bool active) where T : Component
+	{
+		foreach (var component in components)
+		{
+			component.gameObject.SetActive(active);
+		}
+	}
 
 
 	public static Vector2 RandomPoint(this Rect rect)
