@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class PlayerGameplay : MonoBehaviour
+public class PlayerGameplay : IGameplaySection
 {
 	[SerializeField]
 	private Viewport viewport;
@@ -33,6 +33,8 @@ public class PlayerGameplay : MonoBehaviour
 	[SerializeField]
 	private AnimationCurve fadeInCurve;
 
+	private bool isActiveGameplay;
+
 	private Task<RootInputBase> currentRootTask = null;
 	private RootInputBase currentInput = null;
 	private Task removeTask;
@@ -57,7 +59,21 @@ public class PlayerGameplay : MonoBehaviour
 		this.UpdatePrompt();
 	}
 
-	void Update()
+	protected override void InitSectionGameplay()
+	{
+		this.spawner.InitGameplay();
+		this.inputCount.gameObject.SetActive(false);
+		this.UpdatePrompt();
+		this.isActiveGameplay = true;
+	}
+
+	protected override void CleanupSectionGameplay()
+	{
+		// TODO(rw): cleanup
+		this.spawner.CleanupGameplay();
+	}
+
+	override protected void UpdateSectionGameplay()
 	{
 		inputs[InputActions.Neutral] = Input.GetButtonDown(InputActions.Neutral.ToInputName(this.playerIndex));
 		inputs[InputActions.Down] = Input.GetButtonDown(InputActions.Down.ToInputName(this.playerIndex));

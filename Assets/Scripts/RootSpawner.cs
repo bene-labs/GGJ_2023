@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class RootSpawner : MonoBehaviour
+public class RootSpawner : IGameplaySection
 {
 	[SerializeField]
 	private float spawnDelaySeconds = 0.05f;
@@ -63,9 +63,12 @@ public class RootSpawner : MonoBehaviour
 
 	public async Task RemoveRoot()
 	{
-		// ignore this task
-		_ = this.AnimatePull(this.currentRoot);
-		await Task.Delay((int)(this.growDelay * 1000));
+		if (this.currentRoot)
+		{
+			// ignore this task
+			_ = this.AnimatePull(this.currentRoot);
+			await Task.Delay((int)(this.growDelay * 1000));
+		}
 	}
 	private async Task AnimatePull(RemovableRoot root)
 	{
@@ -83,5 +86,20 @@ public class RootSpawner : MonoBehaviour
 			root.transform.rotation = Quaternion.Euler(0, 0, targetRotationDegrees * this.pullRotationCurve.Evaluate(t));
 		});
 		Object.Destroy(root.gameObject);
+	}
+
+	protected override void InitSectionGameplay()
+	{
+
+	}
+
+	protected override void CleanupSectionGameplay()
+	{
+		_ = this.RemoveRoot();
+	}
+
+	protected override void UpdateSectionGameplay()
+	{
+
 	}
 }
