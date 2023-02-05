@@ -53,6 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   score: 0
+  scoreAnimationSpeed: 0.5
+  scoreCountdownDelay: 1
 --- !u!222 &836956726450863785
 CanvasRenderer:
   m_ObjectHideFlags: 0
