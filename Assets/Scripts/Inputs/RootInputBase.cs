@@ -36,5 +36,5 @@ public abstract class RootInputBase : ScriptableObject
 	/// <param name="progress"></param>
 	/// <param name="buttonPrompt"></param>
 	/// <returns></returns>
-	abstract public bool HandleInputs(Dictionary<InputActions, bool> inputs, out float? progress, out bool updatePrompts, out bool isCorrectInput);
+	abstract public bool HandleInputs(Dictionary<InputActions, bool> inputs, out float? progress, out bool updatePrompts, out bool? isCorrectInput);
 }

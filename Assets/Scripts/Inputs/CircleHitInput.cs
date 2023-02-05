@@ -49,7 +49,7 @@ public class CircleHitInput : RootInputBase
 	}
 
 
-	public override bool HandleInputs(Dictionary<InputActions, bool> inputs, out float? progress, out bool updatePrompts, out bool success)
+	public override bool HandleInputs(Dictionary<InputActions, bool> inputs, out float? progress, out bool updatePrompts, out bool? success)
 	{
 		this.currentT += (Time.deltaTime / this.cycleDuration) % 1;
 		this.currentTime = this.timeMovement.Evaluate(this.currentT);
@@ -63,8 +63,15 @@ public class CircleHitInput : RootInputBase
 				success = true;
 				return true;
 			}
+			else
+			{
+				success = false;
+			}
 		}
-		success = false;
+		else
+		{
+			success = null;
+		}
 		return false;
 	}
 }

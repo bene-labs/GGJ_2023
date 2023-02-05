@@ -113,11 +113,18 @@ public class PlayerGameplay : IGameplaySection
 					{
 						if (updateInputPrompt)
 						{
-							if (isCorrectInput)
-								AudioSource.PlayClipAtPoint(confirm, this.transform.position, 0.7f);
-							else
-								AudioSource.PlayClipAtPoint(deny, this.transform.position, 0.7f);
 							this.UpdatePrompt();
+						}
+					}
+					if (isCorrectInput != null)
+					{
+						if (isCorrectInput.Value)
+						{
+							AudioSource.PlayClipAtPoint(confirm, this.transform.position, 0.7f);
+						}
+						else
+						{
+							AudioSource.PlayClipAtPoint(deny, this.transform.position, 0.7f);
 						}
 					}
 				}
