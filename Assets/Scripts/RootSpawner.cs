@@ -67,6 +67,7 @@ public class RootSpawner : IGameplaySection
 		{
 			// ignore this task
 			_ = this.AnimatePull(this.currentRoot);
+			this.currentRoot = null;
 			await Task.Delay((int)(this.growDelay * 1000));
 		}
 	}

@@ -4,52 +4,39 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class LevelTimer : MonoBehaviour
+public class LevelTimer : IGameplaySection
 {
-    public PlayerGameplay playerOne;
-    public PlayerGameplay playerTwo;
+	public PlayerGameplay playerOne;
+	public PlayerGameplay playerTwo;
 
-    
-    [Tooltip("Measured in Minutes")] 
-    public float timeLimit = 3.0f; 
-    private float _timeCounter = 0.0f;
 
-    private TextMeshPro text;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-        text = GetComponent<TextMeshPro>();
-    }
+	[Tooltip("Measured in Minutes")]
+	public float timeLimit = 3.0f;
+	private float _timeCounter = 0.0f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        _timeCounter += Time.deltaTime;
+	[SerializeField]
+	private GameProgression gameProgression;
 
-        text.text = "Time left: " + System.TimeSpan.FromMinutes((timeLimit - _timeCounter / 60)).ToString(@"m\:ss");
-        if (_timeCounter / 60 > timeLimit)
-        {
-            DisplayVictoryScreen();
-        }
-    }
+	private TextMeshProUGUI text;
 
-    private void DisplayVictoryScreen()
-    {
-        text.enabled = false;
-        
-        if (playerOne.score > playerTwo.score)
-            this.gameObject.transform.GetChild(0).GetComponent<TextMeshPro>().text = "Congrats Player1...";
-        else if  (playerOne.score <  playerTwo.score)
-            this.gameObject.transform.GetChild(0).GetComponent<TextMeshPro>().text = "Congrats Player2...";
-        else
-            this.gameObject.transform.GetChild(0).GetComponent<TextMeshPro>().text = "It's a Tie!";
+	override protected void InitSectionGameplay()
+	{
+		text = GetComponent<TextMeshProUGUI>();
+	}
 
-        Destroy(playerOne);
-        Destroy(playerTwo);
-        Destroy(GameObject.Find("TurnipMamaSpawner"));
-        
-        this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-    }
+	protected override void CleanupSectionGameplay()
+	{
+		text.enabled = false;
+	}
+
+	override protected void UpdateSectionGameplay()
+	{
+		_timeCounter += Time.deltaTime;
+
+		text.text = "Time left: " + System.TimeSpan.FromMinutes((timeLimit - _timeCounter / 60)).ToString(@"m\:ss");
+		if (_timeCounter / 60 > timeLimit)
+		{
+			this.gameProgression.Advance();
+		}
+	}
 }

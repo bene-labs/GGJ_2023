@@ -33,8 +33,6 @@ public class PlayerGameplay : IGameplaySection
 	[SerializeField]
 	private AnimationCurve fadeInCurve;
 
-	private bool isActiveGameplay;
-
 	private Task<RootInputBase> currentRootTask = null;
 	private RootInputBase currentInput = null;
 	private Task removeTask;
@@ -64,11 +62,12 @@ public class PlayerGameplay : IGameplaySection
 		this.spawner.InitGameplay();
 		this.inputCount.gameObject.SetActive(false);
 		this.UpdatePrompt();
-		this.isActiveGameplay = true;
 	}
 
 	protected override void CleanupSectionGameplay()
 	{
+		this.inputPrompts.SetAllGameObjectsActive(false);
+		this.inputCount.gameObject.SetActive(false);
 		// TODO(rw): cleanup
 		this.spawner.CleanupGameplay();
 	}
