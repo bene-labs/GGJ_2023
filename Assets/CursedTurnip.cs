@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class CursedTurnip : MonoBehaviour
 {
+    private GameObject ui;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        ui = GameObject.Find("GameUI");
+        ui.SetActive(false);
     }
 
     // Update is called once per frame
@@ -18,7 +21,7 @@ public class CursedTurnip : MonoBehaviour
     
     private void Disappear()
     {
-        print("Get goofed!");
+        ui.SetActive(true);
         Destroy(this.gameObject);    
     }
 }

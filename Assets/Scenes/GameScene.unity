@@ -303,11 +303,11 @@ PrefabInstance:
       objectReference: {fileID: 6116380998989859211, guid: 27403acbf8b0ddd46b17778c0a12470b, type: 3}
     - target: {fileID: 2183998051737462137, guid: 310a84ff081e8e7419daeb43d0b85e8d, type: 3}
       propertyPath: maxSpawnDelay
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2183998051737462137, guid: 310a84ff081e8e7419daeb43d0b85e8d, type: 3}
       propertyPath: minSpawnDelay
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2183998051737462137, guid: 310a84ff081e8e7419daeb43d0b85e8d, type: 3}
       propertyPath: hidingSpots.Array.size
@@ -331,6 +331,17 @@ PrefabInstance:
       objectReference: {fileID: 1701732461}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 310a84ff081e8e7419daeb43d0b85e8d, type: 3}
+--- !u!114 &648082281 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2183998051737462137, guid: 310a84ff081e8e7419daeb43d0b85e8d, type: 3}
+  m_PrefabInstance: {fileID: 594714880}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce236fa122756f42b1d2e80baec7874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &796414086
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1605,7 +1616,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 874237419059474563, guid: 6ec3abaef2d97134199d61d597b90f92, type: 3}
       propertyPath: gameElements.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 874237419059474563, guid: 6ec3abaef2d97134199d61d597b90f92, type: 3}
       propertyPath: titleElements.Array.size
@@ -1623,6 +1634,10 @@ PrefabInstance:
       propertyPath: gameElements.Array.data[2]
       value: 
       objectReference: {fileID: 1716593135}
+    - target: {fileID: 874237419059474563, guid: 6ec3abaef2d97134199d61d597b90f92, type: 3}
+      propertyPath: gameElements.Array.data[3]
+      value: 
+      objectReference: {fileID: 648082281}
     - target: {fileID: 874237419059474563, guid: 6ec3abaef2d97134199d61d597b90f92, type: 3}
       propertyPath: preGameElements.Array.size
       value: 1
