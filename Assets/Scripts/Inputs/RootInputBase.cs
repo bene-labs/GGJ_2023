@@ -18,10 +18,12 @@ public abstract class RootInputBase : ScriptableObject
 		Object.Destroy(this);
 	}
 
+	virtual public bool UseCircularIndicator => false;
+
 	abstract protected void Initialize();
 
 	abstract public int getScoreValue();
-	
+
 	abstract public List<InputActions> GetInputPrompts();
 	abstract public InputActions? NextRequiredInput { get; }
 	abstract public bool IsRepeatedInput { get; }

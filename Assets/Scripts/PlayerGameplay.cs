@@ -20,6 +20,8 @@ public class PlayerGameplay : IGameplaySection
 	private RectTransform inputPromptParent;
 	[SerializeField]
 	private int playerIndex;
+	[SerializeField]
+	private CircleIndicator circularIndicator;
 
 	[Header("UI Fading")]
 	[SerializeField]
@@ -39,7 +41,7 @@ public class PlayerGameplay : IGameplaySection
 
 	public int score = 0;
 	public AudioClip collectSound;
-	
+
 	private Task uiFadeTask;
 
 	public AudioClip confirm;
@@ -72,6 +74,7 @@ public class PlayerGameplay : IGameplaySection
 	{
 		this.inputPrompts.SetAllGameObjectsActive(false);
 		this.inputCount.gameObject.SetActive(false);
+		this.circularIndicator.gameObject.SetActive(false);
 		// TODO(rw): cleanup
 		this.spawner.CleanupGameplay();
 	}
@@ -133,6 +136,16 @@ public class PlayerGameplay : IGameplaySection
 	{
 		if (this.currentInput != null && this.removeTask == null)
 		{
+			if (this.currentInput.UseCircularIndicator)
+			{
+				this.circularIndicator.gameObject.SetActive(true);
+				var circleInput = this.currentInput as CircleHitInput;
+				this.circularIndicator.Apply(circleInput.minTime, circleInput.maxTime, circleInput.currentTime, circleInput.requiredInput);
+			}
+			else
+			{
+				this.circularIndicator.gameObject.SetActive(false);
+			}
 			this.inputPrompts.SetAllGameObjectsActive(true);
 			if (this.currentInput.IsRepeatedInput)
 			{
@@ -194,6 +207,7 @@ public class PlayerGameplay : IGameplaySection
 		});
 		this.inputCount.gameObject.SetActive(false);
 		this.inputPrompts.SetAllGameObjectsActive(false);
+		this.circularIndicator.gameObject.SetActive(false);
 		this.uiFadeTask = null;
 		this.fadedElement.alpha = 1;
 	}

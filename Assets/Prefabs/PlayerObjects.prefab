@@ -261,10 +261,12 @@ MonoBehaviour:
   availableRoots:
   - {fileID: 728346890804376197, guid: 06a28b047578749459795379100bc90e, type: 3}
   - {fileID: 728346890804376197, guid: 07fb3ba32fdff8e4d98f4333d984618d, type: 3}
+  - {fileID: 728346890804376197, guid: 1bd9bb9d91a63e847bf6b31420855dc7, type: 3}
   inputPromptPrefab: {fileID: 7349110267613621780, guid: 1860668bef267ca4bb88d95e8b20a0bc, type: 3}
   inputCount: {fileID: 0}
   inputPromptParent: {fileID: 0}
   playerIndex: 0
+  circularIndicator: {fileID: 0}
   fadedElement: {fileID: 0}
   fadeOutDuration: 0.125
   fadeOutCurve:
