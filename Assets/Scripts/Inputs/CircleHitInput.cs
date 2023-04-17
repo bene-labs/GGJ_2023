@@ -14,6 +14,9 @@ public class CircleHitInput : RootInputBase
 
 	public override bool UseCircularIndicator => true;
 
+	public CircleIndicator indicator;
+	private bool isIndicatorGlow = false;
+
 	[field: SerializeField]
 	public float minTime { get; private set; } = 0.4f;
 	[field: SerializeField]
@@ -45,7 +48,7 @@ public class CircleHitInput : RootInputBase
 
 	public override int getScoreValue()
 	{
-		return this.score * this.requiredCount;
+		return 100 + this.score * this.requiredCount;
 	}
 
 	protected override void Initialize()
@@ -70,6 +73,18 @@ public class CircleHitInput : RootInputBase
 		progress = this.currentTime;
 		var isPressed = inputs[this.requiredInput];
 		updatePrompts = true;
+
+		if (!isIndicatorGlow && this.currentTime >= this.minTime && this.currentTime < this.maxTime)
+		{
+			indicator.SetIndicatorColor(Color.yellow);
+			isIndicatorGlow = true;
+		}
+		else if (isIndicatorGlow && (this.currentTime >= this.maxTime || this.currentTime < minTime))
+		{
+			indicator.SetIndicatorColor(Color.black);
+			isIndicatorGlow = false;
+		}
+		
 		if (pressCount > 0)
 		{
 			if (isPressed)

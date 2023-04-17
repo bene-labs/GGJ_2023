@@ -50,11 +50,13 @@ public class RootSpawner : IGameplaySection
 		var root = Object.Instantiate(rootPrefab);
 		root.transform.position = this.transform.position;
 		var targetPosition = this.transform.position;
+		Debug.Log("Root Appear started!");
 		await root.Animate(this.growDuration, t =>
 		{
 			root.transform.position = targetPosition - new Vector3(0, this.growDistance * (1 - growMovementCurve.Evaluate(t)), 0);
 			root.transform.rotation = Quaternion.Euler(0, 0, growWiggleCurve.Evaluate(t));
 		});
+		Debug.Log("Root Spawned!");
 		this.currentRoot = root;
 		Debug.Assert(root.possibleInputs != null && root.possibleInputs.Length > 0, "Root: not enough possible inputs!", root);
 		var requiredInputs = root.possibleInputs.GetRandom();
@@ -63,12 +65,14 @@ public class RootSpawner : IGameplaySection
 
 	public async Task RemoveRoot()
 	{
+		Debug.Log("Remove?");
 		if (this.currentRoot)
 		{
+			Debug.Log("Remove!");
 			// ignore this task
 			_ = this.AnimatePull(this.currentRoot);
 			this.currentRoot = null;
-			await Task.Delay((int)(this.growDelay * 1000));
+			//await Task.Delay((int)(this.growDelay * 1000));
 		}
 	}
 	private async Task AnimatePull(RemovableRoot root)

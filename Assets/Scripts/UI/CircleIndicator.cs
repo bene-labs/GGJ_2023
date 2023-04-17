@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CircleIndicator : MonoBehaviour
 {
@@ -26,5 +27,10 @@ public class CircleIndicator : MonoBehaviour
 	private void AdjustForMinScale(ref float value)
 	{
 		value = (value * (1 - this.minScale)) + this.minScale;
+	}
+
+	public void SetIndicatorColor(Color color)
+	{
+		indicator.GetComponent<Image>().color = color;
 	}
 }

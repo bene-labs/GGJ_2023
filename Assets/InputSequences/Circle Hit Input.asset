@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1994afe667cf943af7f5df9715b8d8, type: 3}
   m_Name: Circle Hit Input
   m_EditorClassIdentifier: 
-  <minTime>k__BackingField: 0.4
-  <maxTime>k__BackingField: 0.6
+  indicator: {fileID: 0}
+  <minTime>k__BackingField: 0.3
+  <maxTime>k__BackingField: 0.7
   timeMovement:
     serializedVersion: 2
     m_Curve:

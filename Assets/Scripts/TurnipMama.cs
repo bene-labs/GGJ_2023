@@ -53,7 +53,7 @@ public class TurnipMama : MonoBehaviour
         DangerLevel = 100.0f;
 
         isAngry = true;
-        Debug.Log("Turnip Anger activated!");
+        //Debug.Log("Turnip Anger activated!");
     }
     
     // Start is called before the first frame update
@@ -118,20 +118,21 @@ public class TurnipMama : MonoBehaviour
     
     void Attack(GameObject player)
     {
-        Debug.Log("Attacked Player: " + player.name);
+        //Debug.Log("Attacked Player: " + player.name);
         player.GetComponent<PlayerGameplay>().score -= this.pointMalus;
     }
     
     private void Disappear()
     {
-        print("BYE World!");
+        //print("BYE World!");
         Destroy(this.gameObject);    
     }
+    
     
     public void PeekOut(HidingSpot hidingSpot)
     {
         _anim.speed = Random.Range(minSpawnSpeed, maxSpawnSpeed);
-        print("Turnip Spawned!");
+        //print("Turnip Spawned!");
         transform.position = hidingSpot.transform.position;
         gameObject.transform.rotation = hidingSpot.transform.rotation;
         _isAppearing = true;

@@ -26,20 +26,17 @@ public class PlayerScore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (score < 0)
-        {
-            score = 0;
-        }
         if (player.score != targetScore)
         {
+            addedPoints = player.score - (score + incomingPoints);
+            if (player.score < 0)
+                player.score = 0;
             previousScore = score;
             targetScore = player.score;
             print("Incoming Points!");
-            addedPoints = player.score - (score + incomingPoints);
-            
             text.text = score + (addedPoints > 0 ? " +" : " -") + Mathf.Abs(addedPoints);
 
-            if (addedPoints < 0)
+            if (addedPoints <= 0)
                 text.color = Color.red;
             else
                 text.color = Color.green;
@@ -61,8 +58,6 @@ public class PlayerScore : MonoBehaviour
         incomingPoints = 0;
         addedPoints = 0;
         score = targetScore;
-        if (score < 0)
-            score = 0;
         text.color = Color.white;
         text.text = score.ToString();
     } 

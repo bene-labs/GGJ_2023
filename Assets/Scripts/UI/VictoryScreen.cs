@@ -63,9 +63,16 @@ public class VictoryScreen : IGameplaySection
 	private async void TransitionButton()
 	{
 		this.repeatButton.gameObject.SetActive(false);
+		
+		Invoke("voidSpawnRepeatButton", buttonTransitionDelay);
+	
+	}
+
+	private async void voidSpawnRepeatButton()
+	{
 		var rectTransform = this.repeatButtonCanvas.GetComponent<RectTransform>();
-		await Task.Delay((int)(this.buttonTransitionDelay * 1000));
 		this.repeatButton.gameObject.SetActive(true);
+	
 		await this.Animate(this.buttonTransitionDuration, t =>
 		{
 			this.repeatButtonCanvas.alpha = this.buttonAlphaCurve.Evaluate(t);
@@ -74,7 +81,7 @@ public class VictoryScreen : IGameplaySection
 		});
 		this.isTransitionDone = true;
 	}
-
+	
 	private void HandleRepeateButtonClick()
 	{
 		this.TryAdvance();

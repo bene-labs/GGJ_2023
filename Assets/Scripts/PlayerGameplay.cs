@@ -54,6 +54,8 @@ public class PlayerGameplay : IGameplaySection
 		{InputActions.Decline, false},
 	};
 
+	private bool isRespawnQueded = false;
+
 	void Start()
 	{
 		Debug.Assert(this.viewport != null, "PlayerGameplay: no viewport assigned!", this);
@@ -88,6 +90,7 @@ public class PlayerGameplay : IGameplaySection
 
 		if (this.currentRootTask == null)
 		{
+			Debug.Log("New Root Queded!");
 			this.currentRootTask = this.spawner.SpawnRoot(this.availableRoots.GetRandom());
 		}
 		if (this.currentRootTask != null && this.currentRootTask.IsCompleted)
@@ -128,15 +131,23 @@ public class PlayerGameplay : IGameplaySection
 						}
 					}
 				}
-				if (this.removeTask != null && this.removeTask.IsCompleted)
+				if (!isRespawnQueded && this.removeTask != null && this.removeTask.IsCompleted)
 				{
-					this.currentRootTask = null;
-					this.currentInput.ReleaseCopy();
-					this.currentInput = null;
-					this.removeTask = null;
+					isRespawnQueded = true;
+					Invoke("QueueRespawn", 0.25f);
 				}
 			}
 		}
+	}
+
+	private void QueueRespawn()
+	{
+		isRespawnQueded = false;
+		Debug.Log("Task Completed!");
+		this.currentRootTask = null;
+		this.currentInput.ReleaseCopy();
+		this.currentInput = null;
+		this.removeTask = null;
 	}
 
 	private void UpdatePrompt()
@@ -148,6 +159,7 @@ public class PlayerGameplay : IGameplaySection
 				this.circularIndicator.gameObject.SetActive(true);
 				var circleInput = this.currentInput as CircleHitInput;
 				this.circularIndicator.Apply(circleInput.minTime, circleInput.maxTime, circleInput.currentTime, circleInput.requiredInput);
+				circleInput.indicator = circularIndicator;
 			}
 			else
 			{
